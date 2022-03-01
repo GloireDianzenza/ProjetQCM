@@ -1,0 +1,40 @@
+h1
+{
+    display: flex;
+    justify-content: center;
+}
+
+#btnRetour
+{
+    display: flex;
+    background-color: red;
+}
+
+#btnRetour:hover
+{
+    display: flex;
+    background-color: greenyellow;
+}
+
+.container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.highlight
+{
+    display: flex;
+    background-color: cyan;
+}
+
+.correct
+{
+    background-color: yellowgreen;
+}
+
+.wrong
+{
+    background-color: red;
+}
