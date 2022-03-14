@@ -43,9 +43,6 @@
             <label for="">Resultat de recherche</label>
             <table style="color: black; background-color: red;" id="tblResult-Recherche"></table>
         </div>
-        
-
-        
 
         <table id="tblListeQCM">
 <thead>
