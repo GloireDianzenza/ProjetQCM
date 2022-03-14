@@ -41,7 +41,7 @@
         </header>
         <div id="divResultRecherche">
             <label for="">Resultat de recherche</label>
-            <table style="color: green; background-color: blue;" id="tblResult-Recherche"></table>
+            <table style="color: black; background-color: red;" id="tblResult-Recherche"></table>
         </div>
         
 

@@ -16,12 +16,12 @@
             <?php
     if($_POST['recherche']!=""){
             foreach($sql->fetchAll(PDO::FETCH_ASSOC)as $row){?>
-            <tr>
+            <!-- <tr>
                 <td class="tdListeQCM"><?php echo "<a href='../Vue/questions.php?numQCM=".$row['idQuestionnaire']."&nomQCM=".$row['libelleQuestionnaire']."'>";  echo $row['libelleQuestionnaire']; echo "</a>";?></td>
                 <td class="tdListeQCM"><?php echo $row['idQuestionnaire'];?></td>
                 <td class="tdListeQCM"></td>
                 <td class="tdListeQCM"></td>
-            </tr>    
+            </tr>     -->
                 <?php } 
             foreach($sql1->fetchAll(PDO::FETCH_ASSOC)as $row){?>
             <tr>
