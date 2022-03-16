@@ -17,3 +17,22 @@ function GetQCM() {
         }
     );
 }
+function GetReponseCoche(){
+    var idReponseCocher;
+    idReponseCocher=$(this).attr("id");
+    
+    $.ajax
+    (
+        {
+            method:"post",
+            url:"../Vue/vueQCM.php",
+            data:"idRepCheck="+idReponseCocher,
+            success:function(donnees)
+            {
+                $('#tabR').append(donnees);
+            }
+        }
+    );
+
+    
+}

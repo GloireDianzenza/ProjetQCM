@@ -63,7 +63,7 @@
 
             foreach($sql->fetchAll(PDO::FETCH_ASSOC)as $row){?>
             <tr>
-                <td class="tdListeQCM"><?php echo "<a href='../Vue/questions.php?numQCM=".$row['idQuestionnaire']."&nomQCM=".$row['libelleQuestionnaire']."'>";  echo $row['libelleQuestionnaire']; echo "</a>";?></td>
+                <td class="tdListeQCM"><?php echo "<a href='../Vue/vueQCM.php?numQCM=".$row['idQuestionnaire']."&nomQCM=".$row['libelleQuestionnaire']."'>";  echo $row['libelleQuestionnaire']; echo "</a>";?></td>
                 <td class="tdListeQCM"><?php echo $row['idQuestionnaire'];?></td>
                 <td class="tdListeQCM"></td>
                 <td class="tdListeQCM"></td>
@@ -71,7 +71,7 @@
                 <?php } 
             foreach($sql1->fetchAll(PDO::FETCH_ASSOC)as $row){?>
             <tr>
-                <td class="tdListeQCM"><?php echo "<a href='../Vue/questions.php?numQCM=".$row['idQuestionnaire']."&nomQCM=".$row['libelleQuestionnaire']."'>";  echo $row['libelleQuestionnaire']; echo "</a>";?></td>
+                <td class="tdListeQCM"><?php echo "<a href='../Vue/vueQCM.php?numQCM=".$row['idQuestionnaire']."&nomQCM=".$row['libelleQuestionnaire']."'>";  echo $row['libelleQuestionnaire']; echo "</a>";?></td>
                 <td class="tdListeQCM"><?php echo $row['idQuestionnaire'];?></td>
                 <td class="tdListeQCM"><?php echo $row['dateFait'];?></td>
                 <td class="tdListeQCM"><?php echo $row['point'];?></td>
