@@ -101,6 +101,7 @@
     
     ?>
     <input type="hidden" name="nbQ" value="<?php echo $nbQ; ?>">
+    <input type="hidden" name="idQ" value="<?php echo $_SESSION['idQuestion']; ?>">
     <input type="submit" value="">
     <progress id="barreEvoQCM" value="50%"  max="200" ></progress>
     </form>

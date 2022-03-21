@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['resultat'];
+$_SESSION['resultat'][strval($_GET['idQ'])]=$_GET['resultat'];
 print_r($_SESSION['resultat']);
 ?>
 <!DOCTYPE html>
