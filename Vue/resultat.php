@@ -13,7 +13,7 @@ $_SESSION['numEtudiant'];
     <title>resultat</title>
 </head>
 <body>
-    <a href=""><div>Voir votre résultat</div></a>
+    <a href="./Resultats.php"><div>Voir votre résultat</div></a>
     
 </body>
 </html>

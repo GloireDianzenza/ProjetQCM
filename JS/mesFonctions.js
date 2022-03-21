@@ -9,6 +9,7 @@ function GetQCM() {
             data:"recherche="+QCMrechercher,
             success:function(donnees)
             {
+                $('#tblResult-Recherche').empty();
                 $('#tblResult-Recherche').append(donnees);
             },
             error:function () {

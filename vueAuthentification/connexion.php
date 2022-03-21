@@ -5,9 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../styleCSS/connexion.css">
+    <!-- <link rel="stylesheet" href="../styleCSS/connexion.css"> -->
     <script src="../JS/fonctions.js"></script>
     <script src="../JS/jQuery 3.5.1.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
     
     <!-- <script>
         $
@@ -34,7 +36,7 @@ if(isset($_POST['log']))
     }
     else if($row['statut']=="prof")
     {
-        header('Location:../HTML/prof.html');
+        header('Location:../prof.html');
     }
     else
     {
@@ -43,24 +45,27 @@ if(isset($_POST['log']))
 }
 
 ?>
-<body>
-    <form action="connexion.php" method="post">
-        <div id="container" >
-        <h1>Connexion</h1> 
+<body class="bg-blue-200">
+    <form class="text-center" action="connexion.php" method="post">
+        <div id="container"class="bg-blue-200" >
+        <h1 class="justify-center">Connexion</h1> 
+        <br>
             <?php
-                echo '<a href="acceuil.php"><input id="retour" type="button" value="Retour à la page d^acceuil "></a>';
-                echo "<p>Identifiant :</p>";
-                echo '<input type="text" name="log" id="txtId">';
-                echo "<p>Mot de passe :</p>";
-                echo '<input type="password" name="mdp" id="txtMdp">' ;
+                echo "<div class='absolute top-3 right-14 hover:bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 '><a href='./acceuil.php'>Retour à la page d'accueil</a></div><br>";
+                echo "<p class=''>Identifiant :</p>";
+                echo '<input class="shadow-md border-2 border-teal-400" type="text" name="log" id="txtId">';
+                echo "<p class=''>Mot de passe :</p>";
+                echo '<input class="shadow-md border-2 border-teal-400" type="password" name="mdp" id="txtMdp">' ;
                 echo "<br>";
                 echo "<br>";
-                echo '<a href="">Mot de passe oublier ? </a>';
                 echo "<br>";
-                echo "<br>";
-                echo '<input id="btnConfirmer" type="submit" value="Confirmer">';
+                echo '<input class="hover: bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500  text-lime-100 rounded-r-lg shadow-inner w-20 h-7" id="btnConfirmer" type="submit" value="Confirmer">';
                 echo "<br>";
                 echo "<br>"; 
+                
+                echo "Pas inscrit(e)? <a class='underline text-red-300' href='./inscription.php'>S'inscrire</a><br>";
+                echo '<a class="underline text-red-300" href="">Mot de passe oublier ? </a>';
+
             ?>  
         </div>
     </form>

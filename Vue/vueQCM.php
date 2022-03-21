@@ -61,7 +61,7 @@
 
     $sql4=$cnx->prepare('SELECT login FROM etudiants WHERE idEtudiant='.$_SESSION['numEtudiant']);
     $sql4->execute();
-    $nomEtudiant=$sql4->fetch(PDO::FETCH_NUM);
+    $nomEtudiant=$sql4->fetchAll(PDO::FETCH_NUM);
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,16 +70,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../styleCSS/style.css">
+    <!-- <link rel="stylesheet" href="../styleCSS/style.css"> -->
     <script src="../JS/JQuery 3.5.1.js"></script>
     <script src="../JS/mesFonctions.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <form method='get' action='./<?php echo $suite; ?>.php' class='reponse' >
-    <h1><?php echo $nomEtudiant[0][0]; ?> fait le questionnaire <?php echo $_SESSION['nomQCM'];  ?>...</h1>
+    <form class="container mx-auto bg-gradient-to-r from-cyan-500 to-blue-500  text-center font-mono rounded-xl" method='get' action='./<?php echo $suite; ?>.php' class='reponse' >
+    <h1 class="h-14 overline decoration-pink-500 font-bold text-orange-500"><?php echo $nomEtudiant[0][0]; ?> fait le questionnaire <?php echo $_SESSION['nomQCM'];  ?>...</h1>
 
-    <div id="lblQuestion"><?php echo $_SESSION['lblQuestion']; ?></div>
+    <div class="h-14 bg-gradient-to-r from-yellow-400 to-lime-400 text-cyan-500 rounded-full text-xl" id="lblQuestion"><?php echo $_SESSION['lblQuestion']; ?></div>
 
     
     
@@ -87,7 +87,7 @@
         if($row3[0][0]>1){?>
         <div>
             <input onclick="GetReponseCoche" type="checkbox"  name="resultat[]" value="<?php echo $row['valeur'];?>" >
-            <label for="" ><?php echo $row['valeur'];?></label>
+            <label class="text-lg text-green-300" for="" ><?php echo $row['valeur'];?></label>
         </div>
     
     <?php
@@ -97,7 +97,7 @@
             ?>
         <div>
             <input onclick="GetReponseCoche" type="radio"  name="resultat" value="<?php echo $row['valeur'];?>" >
-            <label for="" ><?php echo $row['valeur'];?></label>
+            <label class="text-lg text-green-300" for="" ><?php echo $row['valeur'];?></label>
         </div>
     
     <?php
@@ -108,7 +108,7 @@
     ?>
     <input type="hidden" name="nbQ" value="<?php echo $nbQ; ?>">
     <input type="hidden" name="idQ" value="<?php echo $_SESSION['idQuestion']; ?>">
-    <input type="submit" value="Question suivante">
+    <input class="hover:font-bold bg-gradient-to-r from-green-400 to-blue-500 hover:from-lime-400 hover:to-yellow-400 rounded text-amber-100" type="submit" value="Question suivante"><br>
     <progress id="barreEvoQCM" value="50%"  max="200" ></progress>
     </form>
     
