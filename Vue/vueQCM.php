@@ -79,14 +79,14 @@
     <form class="container mx-auto bg-gradient-to-r from-cyan-500 to-blue-500  text-center font-mono rounded-xl" method='get' action='./<?php echo $suite; ?>.php' class='reponse' >
     <h1 class="h-14 overline decoration-pink-500 font-bold text-orange-500"><?php echo $nomEtudiant[0][0]; ?> fait le questionnaire <?php echo $_SESSION['nomQCM'];  ?>...</h1>
 
-    <div class="h-14 bg-gradient-to-r from-yellow-400 to-lime-400 text-cyan-500 rounded-full text-xl" id="lblQuestion"><?php echo $_SESSION['lblQuestion']; ?></div>
+    <div class="leading-10 h-14 bg-gradient-to-r from-yellow-400 to-lime-400 text-cyan-500 rounded-full text-xl" id="lblQuestion"><?php echo $_SESSION['lblQuestion']; ?></div>
 
     
     
     <?php foreach($sql1->fetchAll(PDO::FETCH_ASSOC) as $row){ 
         if($row3[0][0]>1){?>
         <div>
-            <input onclick="GetReponseCoche" type="checkbox"  name="resultat[]" value="<?php echo $row['valeur'];?>" >
+            <input onclick="GetReponseCoche" type="checkbox"  name="resultat[]" value="<?php echo $row['idReponse'];?>" >
             <label class="text-lg text-green-300" for="" ><?php echo $row['valeur'];?></label>
         </div>
     
@@ -96,7 +96,7 @@
         {
             ?>
         <div>
-            <input onclick="GetReponseCoche" type="radio"  name="resultat" value="<?php echo $row['valeur'];?>" >
+            <input onclick="GetReponseCoche" type="radio"  name="resultat" value="<?php echo $row['idReponse'];?>" >
             <label class="text-lg text-green-300" for="" ><?php echo $row['valeur'];?></label>
         </div>
     

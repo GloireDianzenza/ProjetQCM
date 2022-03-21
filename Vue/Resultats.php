@@ -12,12 +12,13 @@
 </head>
 <body>
     <?php
+    session_start();
         echo '<h1>Résultats finaux</h1>'.'<br>';
         echo '<br>';
         $total = 0;
         echo '<a href="../Vue/vueChoixDesQuestionnaire.php"><input type="button" value="Retour à la page des questionnaires" id="btnRetour"></a>'.'<br>';
         include 'cnx.php';
-        $sql = $cnx->prepare('SELECT idQuestionnaire,libelleQuestionnaire FROM questionnaire WHERE libelleQuestionnaire = "'.$_GET['nomQCM'].'"');
+        $sql = $cnx->prepare('SELECT idQuestionnaire,libelleQuestionnaire FROM questionnaire WHERE libelleQuestionnaire = "'.$_SESSION['nomQCM'].'"');
         $sql->execute();
         foreach($sql->fetchAll(PDO::FETCH_NUM) as $test)
         {
@@ -44,7 +45,7 @@
             }
             $sql3 = $cnx->prepare('SELECT idQuestion,idReponse,ordre,bonne FROM questionreponse WHERE idQuestion = '.$l);
             $sql3->execute();
-            $reponses = array();
+            $reponses = $_SESSION['resultat'];
             foreach($sql3->fetchAll(PDO::FETCH_NUM) as $test4)
             {
                 array_push($reponses,$test4[1]);
