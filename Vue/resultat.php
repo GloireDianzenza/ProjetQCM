@@ -2,6 +2,7 @@
 session_start();
 $_SESSION['resultat'][strval($_GET['idQ'])]=$_GET['resultat'];
 print_r($_SESSION['resultat']);
+$_SESSION['numEtudiant'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
