@@ -157,6 +157,7 @@
             echo '<br>';
         echo '</div>';
         echo '<br>';
+        print_r($_SESSION['numEtudiant']);
         echo '<h1 class="container-fluid">Vous avez obtenu un total de : '.$total.' point(s)</h1>'.'<br>';
         echo '<a href="../Vue/vueChoixDesQuestionnaire.php"><input type="button" value="Retour à la page des questionnaires" id="btnRetour"></a>'.'<br>';
     ?>
