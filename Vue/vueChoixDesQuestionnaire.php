@@ -15,9 +15,12 @@
             }
         )
     </script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <?php
+    session_start();
+    $_SESSION['numEtudiant']=$_GET['numEtudiant'];
 
     include "cnx.php";
     $sql=$cnx->prepare("SELECT idQuestionnaire,libelleQuestionnaire FROM questionnaire ");
@@ -25,32 +28,27 @@
     
 
     ?>
-    <div id="container">
-        <header>
-            <label id="lblRecherche" for="txtRechercheQCM">Rechercher un QCM</label>
-            <input placeholder="Quel QCM voulez-vous?" type="search" name="txtRechercheQCM" id="txtRechercheQCM">
+    <div id="container" class="flex flex-col space-y-4 w-full">
+        <header class="bg-amber-200 rounded-xl">
+            <label class="font-serif shadow-md" id="lblRecherche" for="txtRechercheQCM">Rechercher un QCM</label>
+            <input class="border border-lime-400" placeholder="Quel QCM voulez-vous?" type="search" name="txtRechercheQCM" id="txtRechercheQCM">
             <div id="aide">?</div>
-
-            <ul id="profil"><img id="imgProfil" src="../photo/photoProfile.png" alt="">
+            <div id="profil"><img id="imgProfil" src="../photo/photoProfile.png" alt="">
             <div></div>
             <div></div>
             <div></div>
             <div></div>
-            </ul>
-            
+            </div>
         </header>
-        <div id="divResultRecherche">
-            <label for="">Resultat de recherche</label>
-            <table style="color: black; background-color: red;" id="tblResult-Recherche"></table>
-        </div>
+        
 
-        <table id="tblListeQCM">
-<thead>
-                <tr>
-                    <td class="tdListeQCM">Questionnaire</td>
-                    <td class="tdListeQCM">Numéro</td>
-                    <td class="tdListeQCM">Fais le:</td>
-                    <td class="tdListeQCM">Score</td>
+        <table class="border rounded-xl border-separate  border-slate-500 bg-amber-400" id="tblListeQCM">
+            <thead>
+                <tr class="border border-slate-300 rounded-xl">
+                    <td class="border border-slate-300 rounded-xl">Questionnaire</td>
+                    <td class="border border-slate-300 rounded-xl" >Numéro</td>
+                    <td class="border border-slate-300 rounded-xl" >Fais le:</td>
+                    <td class="border border-slate-300 rounded-xl">Score</td>
                 </tr>    
             </thead>
         
@@ -62,27 +60,28 @@
             
 
             foreach($sql->fetchAll(PDO::FETCH_ASSOC)as $row){?>
-            <tr>
-                <td class="tdListeQCM"><?php echo "<a href='../Vue/vueQCM.php?numQCM=".$row['idQuestionnaire']."&nomQCM=".$row['libelleQuestionnaire']."'>";  echo $row['libelleQuestionnaire']; echo "</a>";?></td>
-                <td class="tdListeQCM"><?php echo $row['idQuestionnaire'];?></td>
-                <td class="tdListeQCM"></td>
-                <td class="tdListeQCM"></td>
+            <tr class="border border-slate-300 rounded-xl">
+                <td class="border border-slate-300 rounded-xl"><?php echo "<a href='../Vue/vueQCM.php?numQCM=".$row['idQuestionnaire']."&nomQCM=".$row['libelleQuestionnaire']."'>";  echo $row['libelleQuestionnaire']; echo "</a>";?></td>
+                <td class="border border-slate-300 rounded-xl"><?php echo $row['idQuestionnaire'];?></td>
+                <td class="border border-slate-300 rounded-xl"></td>
+                <td class="border border-slate-300 rounded-xl"></td>
             </tr>    
                 <?php } 
             foreach($sql1->fetchAll(PDO::FETCH_ASSOC)as $row){?>
-            <tr>
-                <td class="tdListeQCM"><?php echo "<a href='../Vue/vueQCM.php?numQCM=".$row['idQuestionnaire']."&nomQCM=".$row['libelleQuestionnaire']."'>";  echo $row['libelleQuestionnaire']; echo "</a>";?></td>
-                <td class="tdListeQCM"><?php echo $row['idQuestionnaire'];?></td>
-                <td class="tdListeQCM"><?php echo $row['dateFait'];?></td>
-                <td class="tdListeQCM"><?php echo $row['point'];?></td>
+            <tr class="border border-slate-300 rounded-xl">
+                <td class="border border-slate-300 rounded-xl"><?php echo "<a href='../Vue/vueQCM.php?numQCM=".$row['idQuestionnaire']."&nomQCM=".$row['libelleQuestionnaire']."'>";  echo $row['libelleQuestionnaire']; echo "</a>";?></td>
+                <td class="border border-slate-300 rounded-xl"><?php echo $row['idQuestionnaire'];?></td>
+                <td class="border border-slate-300 rounded-xl"><?php echo $row['dateFait'];?></td>
+                <td class="border border-slate-300 rounded-xl"><?php echo $row['point'];?></td>
                 
                 
             </tr>
 <?php } ?>
+<table id="tabR"></table>
         </table>
-
+                
         
-
+                
     </div>
 </body>
 </html>

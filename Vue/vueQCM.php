@@ -31,9 +31,10 @@
     $sql2->execute();
     $row2=$sql2->fetchAll(PDO::FETCH_NUM);
 
-    $sql3=$cnx->prepare("SELECT COUNT(questionreponse.bonne) FROM questionreponse
+    $sql3=$cnx->prepare("SELECT COUNT(bonne) FROM questionreponse
     WHERE idQuestion=".$_SESSION['idQuestion']." and bonne=1;");
     $sql3->execute();
+    $row3=$sql3->fetchAll(PDO::FETCH_NUM);
     if(isset($_GET['nbQ']))
     { 
         $nbQ=$_GET['nbQ']+1;
@@ -68,6 +69,7 @@
     <link rel="stylesheet" href="../styleCSS/style.css">
     <script src="../JS/JQuery 3.5.1.js"></script>
     <script src="../JS/mesFonctions.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <form method='get' action='./<?php echo $suite; ?>.php' class='reponse' >
@@ -78,9 +80,9 @@
     
     
     <?php foreach($sql1->fetchAll(PDO::FETCH_ASSOC) as $row){ 
-        if($sql3>1){?>
+        if($row3[0][0]>1){?>
         <div>
-            <input onclick="GetReponseCoche" type="checkbox"  name="resultat" value="<?php echo $row['valeur'];?>" >
+            <input onclick="GetReponseCoche" type="checkbox"  name="resultat[]" value="<?php echo $row['valeur'];?>" >
             <label for="" ><?php echo $row['valeur'];?></label>
         </div>
     
@@ -102,7 +104,7 @@
     ?>
     <input type="hidden" name="nbQ" value="<?php echo $nbQ; ?>">
     <input type="hidden" name="idQ" value="<?php echo $_SESSION['idQuestion']; ?>">
-    <input type="submit" value="">
+    <input type="submit" value="Question suivante">
     <progress id="barreEvoQCM" value="50%"  max="200" ></progress>
     </form>
     
