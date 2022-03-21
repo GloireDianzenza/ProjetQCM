@@ -1,6 +1,7 @@
 <?php
 session_start();
 $_SESSION['resultat'];
+print_r($_SESSION['resultat']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
