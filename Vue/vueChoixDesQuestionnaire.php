@@ -57,7 +57,7 @@
             <?php
 
             $sql1=$cnx->prepare("SELECT qcmfait.idQuestionnaire,idEtudiant,libelleQuestionnaire,dateFait,point FROM questionnaire INNER JOIN qcmfait ON questionnaire.idQuestionnaire=qcmfait.idQuestionnaire
-            WHERE libelleQuestionnaire LIMIT 10");
+            WHERE idEtudiant= ".$_GET['numEtudiant']." LIMIT 10");
             $sql1->execute();
             
 
