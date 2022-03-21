@@ -33,12 +33,7 @@
             <label class="font-serif shadow-md" id="lblRecherche" for="txtRechercheQCM">Rechercher un QCM</label>
             <input class="border border-lime-400" placeholder="Quel QCM voulez-vous?" type="search" name="txtRechercheQCM" id="txtRechercheQCM">
             <div id="aide">?</div>
-            <div id="profil"><img id="imgProfil" src="../photo/photoProfile.png" alt="">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            </div>
+            <div id="profil"><?php echo  ?><!-- <img id="imgProfil" src="../photo/photoProfile.png" alt=""> --></div>
         </header>
         
 

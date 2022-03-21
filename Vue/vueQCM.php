@@ -58,6 +58,10 @@
     {
         $_SESSION['resultat'][strval($_SESSION['idQuestion'])]=$_GET['resultat'];
     }
+
+    $sql4=$cnx->prepare('SELECT login FROM etudiants WHERE idEtudiant='.$_SESSION['numEtudiant']);
+    $sql4->execute();
+    $nomEtudiant=$sql4->fetch(PDO::FETCH_NUM);
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +77,7 @@
 </head>
 <body>
     <form method='get' action='./<?php echo $suite; ?>.php' class='reponse' >
-    <h1>Lévi Webert fait le questionnaire <?php echo $_SESSION['nomQCM'];  ?>...</h1>
+    <h1><?php echo $nomEtudiant[0][0]; ?> fait le questionnaire <?php echo $_SESSION['nomQCM'];  ?>...</h1>
 
     <div id="lblQuestion"><?php echo $_SESSION['lblQuestion']; ?></div>
 
