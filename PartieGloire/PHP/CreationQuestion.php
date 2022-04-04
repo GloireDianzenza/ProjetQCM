@@ -1,3 +1,18 @@
+<?php
+    session_start();
+    if(isset($_GET['choixReponse']))
+    {
+        $_SESSION["question"] = $_GET["question"];
+        $_SESSION["reponses"] = array();
+        $head = "";
+        foreach($_GET["reponse"] as $listerep)
+        {
+           array_push($_SESSION["reponses"],$listerep);
+        }
+        header("Location:../../PartieLevi/vuePhp/DefinirReponse.php?question=".$_SESSION["question"]);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,14 +90,14 @@
     if(isset($_GET["picPlus_y"]))
     {
         $nvq = $nvq + 1;
-        echo "<input type='text' name='question".$nvq."' placeholder='Insérer une nouvelle question' class='w-64 border border-black'><br>";
+        echo "<input type='text' name='question' placeholder='Insérer une nouvelle question' class='w-64 border border-black'><br>";
         echo "<input type='hidden' name='NouvelleQuestion' value='".($tot[0]["idq"] + 1)."'>";
         echo "<br>";
         echo "<div class='case bg-white border border-8 rounded-xl border-red-900 justify-around'>";
-        echo "<div id='divAnswers' class='flex-col justify-around'>";
-        echo "</div>";
-        echo "<input type='button' value='Ajouter réponse' onclick='AjouterReponse()' class='bg-blue-100'>";
-        echo "<input type='button' value='Enlever réponse' id='' onclick='EnleverReponse()' class='bg-red-100'>";
+        // echo "<div id='divAnswers' class='flex-col justify-around'>";
+        // echo "</div>";
+        // echo "<input type='button' value='Ajouter réponse' onclick='AjouterReponse()' class='bg-blue-100'>";
+        // echo "<input type='button' value='Enlever réponse' id='' onclick='EnleverReponse()' class='bg-red-100'>";
         echo "<div class='flex justify-center items-center'>";
         echo "<input type='radio' name='NbRep' value='Rad'><p class='text-3xl bg-green-200 rounded-sm'>Radio</p>";
         echo "</div>";
