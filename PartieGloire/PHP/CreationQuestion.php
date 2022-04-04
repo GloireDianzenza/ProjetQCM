@@ -1,3 +1,10 @@
+<?php
+    if(isset($_GET['choixReponse']))
+    {
+        header("Location:../PHP/PartieLevi/vuePhp/DefinirReponse.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
