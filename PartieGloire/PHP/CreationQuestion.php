@@ -1,7 +1,7 @@
 <?php
     if(isset($_GET['choixReponse']))
     {
-        header("Location:../PHP/PartieLevi/vuePhp/DefinirReponse.php");
+        header("Location:../../PartieLevi/vuePhp/DefinirReponse.php");
     }
 ?>
 
