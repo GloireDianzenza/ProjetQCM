@@ -49,7 +49,7 @@
         $reponses = $cnx->prepare("SELECT reponse.idReponse,valeur,bonne FROM reponse JOIN questionreponse ON reponse.idReponse = questionreponse.idReponse WHERE idQuestion = ".$test2["idQuestion"]);
         $reponses->execute();
         echo "<p class='bg-blue-400'>".$test2["libelleQuestion"]."</p>"."<br>";
-        echo "<div class='case bg-white border border-8 rounded-xl border-black'>";
+        echo "<div class='case bg-white border border-8 rounded-xl border-blue-200'>";
         foreach($reponses->fetchAll(PDO::FETCH_ASSOC) as $test3)
         {
             echo $test3['valeur']."<br>";
@@ -78,7 +78,7 @@
         echo "<input type='text' name='question".$nvq."' placeholder='Insérer une nouvelle question' class='w-64 border border-black'><br>";
         echo "<input type='hidden' name='NouvelleQuestion' value='".($tot[0]["idq"] + 1)."'>";
         echo "<br>";
-        echo "<div class='case bg-white border border-8 rounded-xl border-black justify-around'>";
+        echo "<div class='case bg-white border border-8 rounded-xl border-red-900 justify-around'>";
         echo "<div id='divAnswers' class='flex-col justify-around'>";
         echo "</div>";
         echo "<input type='button' value='Ajouter réponse' onclick='AjouterReponse()' class='bg-blue-100'>";
