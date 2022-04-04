@@ -6,6 +6,7 @@ function AjouterReponse()
     {
         var newText = document.createElement('input');
         newText.setAttribute('type','text');
+        newText.classList.add("border");
         newText.setAttribute('name','reponse[]');
         newText.setAttribute('placeholder','Insérer réponse ici');
         var element = document.getElementById("divAnswers");
