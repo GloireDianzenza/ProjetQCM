@@ -25,13 +25,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <div>Créer des réponses</div>
-    <div id="containerReponse">
+    <form action="exemple.php" method="get">
+        <div>Créer des réponses</div>
+        <div id="containerReponse">
+        
+        </div>
+        <input type="text" name="reponse" id="txtReponse">
+        <input type="button" id="ajouterR" value="Ajouter une réponse">
+        <a href="">Annuler</a>
+        
+    </form>
     
-    </div>
-    <input type="text" name="reponse" id="txtReponse">
-    <input type="button" id="ajouterR" value="Ajouter une réponse">
-    <a href="">Annuler</a>
-    <input type="submit" value="Valider">
 </body>
 </html>

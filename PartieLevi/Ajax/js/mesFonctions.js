@@ -19,32 +19,6 @@ function GetReponse() {
     );
 
 }
-function SetBonneReponse() {
-    if($(this).attr('checked')=="checked")
-    {
-        alert('decoche');
-    }
-    else
-    {
-        alert('coche');
-    }
-    
-    $.ajax
-    (
-        {
-            method:"post",
-            url:"../Ajax/php/SetBonneRep.php",
-            data:"idBonneRep="+$(this).val()+"&idQuestion="+$('#idQuestion').val(),
-            success:function(donnees)
-            {
-                
-            },
-            error:function () {
-                alert("Error function Ajax")
-            }
-        }
-    );
-}
 function DeleteRep() {
     // $.ajax
     // (
