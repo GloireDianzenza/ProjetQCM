@@ -5,7 +5,7 @@ function AjouterReponse()
     if(document.getElementById("divAnswers").children.length < 4)
     {
         var newText = document.createElement('input');
-        newText.setAttribute('type','text');
+        newText.setAttribute('type','button');
         newText.classList.add("border");
         newText.setAttribute('name','reponse[]');
         newText.setAttribute('placeholder','Insérer réponse ici');
