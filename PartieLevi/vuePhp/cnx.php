@@ -5,7 +5,7 @@ $dsn='mysql:dbname=bddqcm;host=localhost';
 //login
 $login='root';
 // Mot de passe
-$motDePasse='root';
+$motDePasse='';
 // Connexion au serveur MySQL
 try{
     $cnx = new PDO($dsn, $login, $motDePasse,
