@@ -14,7 +14,7 @@
             {
                 
                 $('#ajouterR').click(GetReponse);
-                // $('#deleteR').click(DeleteRep);
+                $('#deleteR').click(DeleteRep);
                 GetReponse();
                 //$('input[type=checkbox]').click(SetBonneReponse);
                 

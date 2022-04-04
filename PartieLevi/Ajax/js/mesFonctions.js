@@ -20,19 +20,19 @@ function GetReponse() {
 
 }
 function DeleteRep() {
-    // $.ajax
-    // (
-    //     {
-    //         method:"post",
-    //         url:"../Ajax/php/",
-    //         data:,
-    //         success:function(donnees)
-    //         {
+    $.ajax
+    (
+        {
+            method:"post",
+            url:"../Ajax/php/DeleteRep.php",
+            data:"idRep="+$(this).attr('id'),
+            success:function(donnees)
+            {
                 
-    //         },
-    //         error:function () {
-    //             alert("Error function Ajax")
-    //         }
-    //     }
-    // );
+            },
+            error:function () {
+                alert("Error function Ajax")
+            }
+        }
+    );
 }
