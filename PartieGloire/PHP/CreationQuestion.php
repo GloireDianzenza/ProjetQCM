@@ -31,7 +31,7 @@
     <br>
     <br>
     <br>
-    <h1 class="flex tarte justify-center font-semibold text-6xl underline" id="title"><?php echo $test1[0]["libelleQuestionnaire"]; ?></h1>
+    <h1 class="flex tarte justify-center items-center font-semibold text-6xl underline hover:text-green-400 w-52" id="title"><?php echo $test1[0]["libelleQuestionnaire"]; ?></h1>
     <br>
     <br>
     <?php
