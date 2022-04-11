@@ -74,6 +74,7 @@
     <script src="../JS/JQuery 3.5.1.js"></script>
     <script src="../JS/mesFonctions.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../styleCSS/style.css">
 </head>
 <body>
     <form class="container mx-auto bg-gradient-to-r from-cyan-500 to-blue-500  text-center font-mono rounded-xl" method='get' action='./<?php echo $suite; ?>.php' class='reponse' >
@@ -86,7 +87,7 @@
     <?php foreach($sql1->fetchAll(PDO::FETCH_ASSOC) as $row){ 
         if($row3[0][0]>1){?>
         <div>
-            <input onclick="GetReponseCoche" type="checkbox"  name="resultat[]" value="<?php echo $row['idReponse'];?>" >
+            <input onclick="GetReponseCoche" type="checkbox"  name="resultat[]" value="<?php echo $row['valeur'];?>" >
             <label class="text-lg text-green-300" for="" ><?php echo $row['valeur'];?></label>
         </div>
     
@@ -96,7 +97,7 @@
         {
             ?>
         <div>
-            <input onclick="GetReponseCoche" type="radio"  name="resultat" value="<?php echo $row['idReponse'];?>" >
+            <input onclick="GetReponseCoche" type="radio"  name="resultat" value="<?php echo $row['valeur'];?>" >
             <label class="text-lg text-green-300" for="" ><?php echo $row['valeur'];?></label>
         </div>
     
@@ -109,7 +110,7 @@
     <input type="hidden" name="nbQ" value="<?php echo $nbQ; ?>">
     <input type="hidden" name="idQ" value="<?php echo $_SESSION['idQuestion']; ?>">
     <input class="hover:font-bold bg-gradient-to-r from-green-400 to-blue-500 hover:from-lime-400 hover:to-yellow-400 rounded text-amber-100" type="submit" value="Question suivante"><br>
-    <progress id="barreEvoQCM" value="50%"  max="200" ></progress>
+    <progress id="barreEvoQCM" value="<?php echo ($nbQ/$row2[0][0]) * 200; ?>"  max="200" ></progress>
     </form>
     
     

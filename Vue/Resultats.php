@@ -77,12 +77,12 @@
                                 {
                                     if($SSS[1] == $_GET['reponse'.$l])
                                     {
-                                        echo '<input type="radio" name="reponse'.$l.'" disabled checked><label class="correct">&thinsp;'.$SSS[1].'</label>'.'<br>';
+                                        echo '<input type="radio" name="reponse'.$l.'" disabled checked><label class="bg-green-400">&thinsp;'.$SSS[1].'</label>'.'<br>';
                                         $total = $total + 1;
                                     }
                                     else
                                     {
-                                        echo '<input type="radio" name="reponse'.$l.'" disabled><label class="correct">&thinsp;'.$SSS[1].'</label>'.'<br>';
+                                        echo '<input type="radio" name="reponse'.$l.'" disabled><label class="bg-green-400">&thinsp;'.$SSS[1].'</label>'.'<br>';
                                     }
                                     
                                 }
@@ -90,11 +90,11 @@
                                 {
                                     if($SSS[1] == $_GET['reponse'.$l])
                                     {
-                                        echo '<input type="radio" name="reponse'.$l.'" disabled checked><label class="wrong">&thinsp;'.$SSS[1].'</label>'.'<br>';
+                                        echo '<input type="radio" name="reponse'.$l.'" disabled checked><label class="bg-red-400">&thinsp;'.$SSS[1].'</label>'.'<br>';
                                     }
                                     else
                                     {
-                                        echo '<input type="radio" name="reponse'.$l.'" disabled><label class="wrong">&thinsp;'.$SSS[1].'</label>'.'<br>';
+                                        echo '<input type="radio" name="reponse'.$l.'" disabled><label class="bg-red-400">&thinsp;'.$SSS[1].'</label>'.'<br>';
                                     }
                                     
                                 }
@@ -162,10 +162,20 @@
         echo '</div>';
         $currentDate = new DateTime();
         $dateString = strval($currentDate->format("d-m-Y"));
-        $newData = $cnx->prepare("UPDATE qcmfait SET dateFait = ".$dateString." WHERE idEtudiant = ".$_SESSION['numEtudiant']." AND idQuestionnaire = ".$idq);
-        $newData->execute();
-        $newData = $cnx->prepare("UPDATE qcmfait SET point = ".$total." WHERE idEtudiant = ".$_SESSION['numEtudiant']." AND idQuestionnaire = ".$idq);
-        $newData->execute();
+        $searchUser = $cnx->prepare("SELECT idEtudiant FROM qcmfait WHERE idEtudiant = ".$_SESSION['numEtudiant']." AND idQuestionnaire = ".$idq);
+        $searchUser->execute();
+        if($searchUser->fetch(PDO::FETCH_NUM) == null)
+        {
+            $newData = $cnx->prepare("INSERT INTO qcmfait VALUES (".$_SESSION['numEtudiant'].",".$idq.",'".$dateString."',".$total.")");
+            $newData->execute();
+        }
+        else
+        {
+            $newData = $cnx->prepare("UPDATE qcmfait SET dateFait = '".$dateString."' WHERE idEtudiant = ".$_SESSION['numEtudiant']." AND idQuestionnaire = ".$idq);
+            $newData->execute();
+            $newData = $cnx->prepare("UPDATE qcmfait SET point = ".$total." WHERE idEtudiant = ".$_SESSION['numEtudiant']." AND idQuestionnaire = ".$idq);
+            $newData->execute();
+        }
         echo '<h1 class="container-fluid">Vous avez obtenu un total de : '.$total.' point(s)</h1>'.'<br>';
         echo '<a href="../Vue/vueChoixDesQuestionnaire.php?numEtudiant='.$_SESSION['numEtudiant'].'"><input type="button" value="Retour à la page des questionnaires" id="btnRetour"></a>'.'<br>';
     ?>
