@@ -19,6 +19,9 @@ $_SESSION['nomQCM'];
 
  <!--  -->
     <h1 class="normal-case text-2xl ">Vous avez complété le questionnaire Pour voir les résultat cliquer !</h1>
+    
+    <h1 class="normal-case text-2xl ">Chargement...</h1>
+    
     <form action="../Vue/Resultats.php" method="get">
         <input type="hidden" name="nomQCM" value="<?php echo $_SESSION['nomQCM']; ?>">
         <?php
