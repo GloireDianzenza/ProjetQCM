@@ -12,9 +12,13 @@ $_SESSION['nomQCM'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>resultat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="grid grid-cols-2 gap-4 place-content-center h-56 w-8/12 container mx-auto h-sreen bg-gradient-to-r from-cyan-500 to-blue-500  text-center font-mono rounded-xl">
-    <h1 class="container">Vous avez complété le questionnaire</h1>
+<body class="grid grid-cols-2 gap-4 place-content-center h-56 w-8/12 container mx-auto h-sreen bg-gradient-to-r from-cyan-500 to-blue-500 
+ text-center font-mono rounded-xl">
+
+ <!--  -->
+    <h1 class="normal-case text-2xl ">Vous avez complété le questionnaire Pour voir les résultat cliquer !</h1>
     <form action="../Vue/Resultats.php" method="get">
         <input type="hidden" name="nomQCM" value="<?php echo $_SESSION['nomQCM']; ?>">
         <?php
@@ -37,7 +41,9 @@ $_SESSION['nomQCM'];
             }
         ?>
         <input type="hidden" name="numEtudiant" value="<?php echo $_SESSION['numEtudiant']; ?>">
-        <input class="leading-10 text-center hover:font-bold bg-gradient-to-r from-green-400 to-pink-700 hover:from-pink-500 hover:to-yellow-500 rounded-full h-24" type="submit" value="Voir les résultats">
+        
+        <input class="leading-10 text-center hover:font-bold bg-gradient-to-r from-green-400 to-pink-700 
+        hover:from-pink-500 hover:to-grey-500 rounded-full h-14" type="submit" value="Voir les résultats">
     </form>
 </body>
 </html>
