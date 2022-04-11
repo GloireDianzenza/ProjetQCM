@@ -12,14 +12,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../styleCSS/Resultat.css">
 </head>
-<body>
+<body  class="bg-blue-200 text-center">
     <?php
     session_start();
         $_SESSION['numEtudiant'] = $_GET['numEtudiant'];
-        echo '<h1>Résultats finaux</h1>'.'<br>';
-        echo '<br>';
+        echo '<h1 class="leading-10 h-14 bg-gradient-to-r from-blue-400 to-blue-600 text-Dark-700 
+        capitalize rounded-full text-xl text-center">Résultats finaux</h1>'.'<br>';
         $total = 0;
-        echo '<a href="../Vue/vueChoixDesQuestionnaire.php"><input type="button" value="Retour à la page des questionnaires" id="btnRetour"></a>'.'<br>';
+        
         include '../cnx.php';
         $sql = $cnx->prepare('SELECT idQuestionnaire,libelleQuestionnaire FROM questionnaire WHERE libelleQuestionnaire = "'.$_GET['nomQCM'].'"');
         $sql->execute();
@@ -35,7 +35,6 @@
         {
             array_push($questions,$test2[1]);
         }
-        echo '<br>';
         $st = 0;
         foreach($questions as $l)
         {
@@ -55,8 +54,8 @@
             }
             echo '<br>';
             echo '<div class"container">';
-                echo '<p class="bg-blue-300">Question numéro '.$st.'</p><br>';
-                echo '<p>'.$phrase.'</p>'.'<br>';
+                echo '<p class="bg-blue-400 capitalize text-xl">Question numéro '.$st.'</p><br>';
+                echo '<p class="font-style: italic text-xl" >'.$phrase.'</p>'.'<br>';
                 if($test3[2] == 1)
                 {
                     $bonnereponse = 0;
@@ -101,7 +100,8 @@
                                 }
                             }
                         }
-                    echo '<p>La réponse à la question '.$st.' est '.$bonnereponse.'</p>';
+                        echo "<br>";
+                    echo '<p class="text-xl text-green-600">La réponse à la question '.$st.' est '.$bonnereponse.'</p>';
                     echo "</div>";
                 }
                 else if($test3[2] > 1)
@@ -148,7 +148,8 @@
                                 }
                             }
                         }
-                        $conclusion = '<p>Réponse(s) exacte(s) : ';
+                        echo '<br>';
+                        $conclusion = '<p  class="text-xl text-green-600"> Réponse(s) exacte(s) : ';
                         foreach($bonnereponse as $a)
                         {
                             $conclusion = $conclusion.$a.'/';
@@ -177,8 +178,10 @@
             $newData = $cnx->prepare("UPDATE qcmfait SET point = ".$total." WHERE idEtudiant = ".$_SESSION['numEtudiant']." AND idQuestionnaire = ".$idq);
             $newData->execute();
         }
-        echo '<h1 class="container-fluid">Vous avez obtenu un total de : '.$total.' point(s)</h1>'.'<br>';
-        echo '<a href="../Vue/vueChoixDesQuestionnaire.php?numEtudiant='.$_SESSION['numEtudiant'].'"><input type="button" value="Retour à la page des questionnaires" id="btnRetour"></a>'.'<br>';
+        echo '<h1 class="shadow-md text-2xl border-2 border-teal-400 my-5 bg-sky-500/50">Vous avez obtenu un total de : '.$total.' point(s)</h1>'.'<br>';
+        echo '<a href="../Vue/vueChoixDesQuestionnaire.php?numEtudiant='.$_SESSION['numEtudiant'].'"><input class="hover: bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 
+         text-lime-100 rounded-r-lg shadow-inner w-64 h-7 type="button" value="Retour à la page des questionnaires" id="btnRetour"></a>'.'<br>';
+        echo '<br>';
     ?>
 </body>
 </html>
