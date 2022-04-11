@@ -38,17 +38,36 @@ function GetReponse() {
 
 }
 
-function DeleteRep() {
+function DeleteRep(idReponse) {
     $.ajax
     (
         {
             method:"post",
             url:"../phpAjax/DeleteRep.php",
-            data:"idRep="+$(this).attr('id'),
+            //data:"id="+$(this).attr('id'),
+            data:"id="+idReponse,
             success:function(donnees)
             {
                 $('#containerReponse').empty();
                 $('#containerReponse').append(donnees);
+            },
+            error:function () {
+                alert("Error function Ajax")
+            }
+        }
+    );
+}
+
+function Annuler() {
+    $.ajax
+    (
+        {
+            method:"post",
+            url:"../phpAjax/Annuler.php",
+            data:"idquest=11",
+            success:function(donnees)
+            {
+
             },
             error:function () {
                 alert("Error function Ajax")

@@ -1,6 +1,9 @@
 <?php
 include "../cnx.php";
-$sql->prepare("");
-$sql->execute();
+$sql1=$cnx->prepare("DELETE FROM questionreponse WHERE idQuestion=".$_POST['idquest']);
+$sql1->execute();
+
+$sql2=$cnx->prepare("DELETE FROM reponse WHERE idQuestion=".$_POST['idquest']);
+$sql2->execute();
 
 ?>

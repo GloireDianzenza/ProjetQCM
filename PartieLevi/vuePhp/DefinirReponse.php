@@ -32,7 +32,7 @@
         </div>
         <input type="text" name="reponse" id="txtReponse">
         <input type="button" id="ajouterR" value="Ajouter une réponse">
-        <a href="">Annuler</a>
+        <a onclick="Annuler()" href="exemple.php">Annuler</a>
         
     </form>
     
