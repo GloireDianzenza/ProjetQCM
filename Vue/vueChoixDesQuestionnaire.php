@@ -22,7 +22,7 @@
     session_start();
     $_SESSION['numEtudiant']=$_GET['numEtudiant'];
 
-    include "cnx.php";
+    include "../cnx.php";
     $sql=$cnx->prepare("SELECT idQuestionnaire,libelleQuestionnaire FROM questionnaire ");
     $sql->execute();
     

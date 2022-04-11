@@ -1,4 +1,4 @@
-<?php include "cnx.php";
+<?php include "../cnx.php";
     $sql=$cnx->prepare("SELECT idQuestionnaire,libelleQuestionnaire FROM questionnaire WHERE libelleQuestionnaire LIKE '".$_POST['recherche']."%' LIMIT 10 ");
     $sql->execute();
     $sql1=$cnx->prepare("SELECT qcmfait.idQuestionnaire,idEtudiant,libelleQuestionnaire,dateFait,point FROM questionnaire INNER JOIN qcmfait ON questionnaire.idQuestionnaire=qcmfait.idQuestionnaire

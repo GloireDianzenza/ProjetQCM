@@ -19,7 +19,7 @@
         echo '<br>';
         $total = 0;
         echo '<a href="../Vue/vueChoixDesQuestionnaire.php"><input type="button" value="Retour à la page des questionnaires" id="btnRetour"></a>'.'<br>';
-        include 'cnx.php';
+        include '../cnx.php';
         $sql = $cnx->prepare('SELECT idQuestionnaire,libelleQuestionnaire FROM questionnaire WHERE libelleQuestionnaire = "'.$_GET['nomQCM'].'"');
         $sql->execute();
         foreach($sql->fetchAll(PDO::FETCH_NUM) as $test)
@@ -106,6 +106,7 @@
                 else if($test3[2] > 1)
                 {
                     $bonnereponse = array();
+                    $rep=$_SESSION['resultat'];
                     echo '<div class="check">';
                         foreach($reponses as $rep)
                         {
@@ -159,16 +160,8 @@
         }
             echo '<br>';
         echo '</div>';
-        echo '<br>';
-        print_r($_SESSION['numEtudiant']);
-        echo '<br>';
-        print_r($idq);
-        echo '<br>';
-        print_r($total);
-        echo '<br>';
         $currentDate = new DateTime();
         $dateString = strval($currentDate->format("d-m-Y"));
-        print_r($dateString);
         $newData = $cnx->prepare("UPDATE qcmfait SET dateFait = ".$dateString." WHERE idEtudiant = ".$_SESSION['numEtudiant']." AND idQuestionnaire = ".$idq);
         $newData->execute();
         $newData = $cnx->prepare("UPDATE qcmfait SET point = ".$total." WHERE idEtudiant = ".$_SESSION['numEtudiant']." AND idQuestionnaire = ".$idq);

@@ -11,7 +11,7 @@ if(isset($_POST['login']))
     }
     else
     {
-        include "cnx.php";
+        include "../cnx.php";
         $sql = $cnx->prepare("INSERT INTO etudiants VALUES (NULL, '".$_POST['login']."', '".$_POST['mdp']."', '".$_POST['nom']."', '".$_POST['prenom']."', '".$_POST['email']."', '".$_POST['statut']."');");
         $sql->execute();
         header("./connexion.php");

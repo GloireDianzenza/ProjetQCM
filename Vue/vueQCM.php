@@ -8,7 +8,7 @@
     }
     
    
-    include 'cnx.php';
+    include '../cnx.php';
     $sql=$cnx->prepare("SELECT question.idQuestion,libelleQuestion,type,nbReponse,questionquestionnaire.idQuestionnaire FROM question JOIN questionquestionnaire ON question.idQuestion=questionquestionnaire.idQuestion 
     WHERE idQuestionnaire= ".$_SESSION['numQCM'].";");
     $sql->execute();

@@ -25,7 +25,7 @@
 <?php 
 if(isset($_POST['log']))
 {
-    include 'cnx.php';
+    include '../cnx.php';
     $sql = $cnx ->prepare("select login,statut,idEtudiant from etudiants 
     where login='".$_POST['log']."'and motDePasse='".$_POST['mdp']."'");
     $sql->execute();
