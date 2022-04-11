@@ -36,7 +36,7 @@
     $nvq = 0;
     $r = 0;
     $ans = 1;
-    include 'cnx.php';
+    include '../../cnx.php';
     $total = $cnx->prepare("SELECT COUNT(idQuestion) as idq FROM question");
     $total->execute();
     $tot = $total->fetchAll(PDO::FETCH_ASSOC);

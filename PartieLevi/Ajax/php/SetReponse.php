@@ -1,5 +1,5 @@
 <?php
-include "cnx.php";
+include "../../../cnx.php";
 
 $majR=$cnx->prepare("INSERT INTO reponse VALUES (null,'".$_POST['reponse']."','')");
 $majR->execute();
