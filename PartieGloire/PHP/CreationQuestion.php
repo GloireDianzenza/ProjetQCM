@@ -9,7 +9,7 @@
         {
            array_push($_SESSION["reponses"],$listerep);
         }
-        header("Location:../../PartieLevi/vuePhp/DefinirReponse.php?question=".$_SESSION["question"]."&idQ=".$_GET["NouvelleQuestion"]);
+        header("Location:../../PartieLevi/vuePhp/DefinirReponse.php?question=".$_SESSION["question"]."&idQ=".$_GET["NouvelleQuestion"]."&idQai=".$_GET["idQuestionnaire"]."&lblQ=".$_GET["lblQuestionnaire"]."&NbRep=".$_GET["NbRep"]);
     }
 ?>
 
@@ -34,11 +34,14 @@
     $total = $cnx->prepare("SELECT COUNT(idQuestion) as idq FROM question");
     $total->execute();
     $tot = $total->fetchAll(PDO::FETCH_ASSOC);
-    $questionnaire = $cnx->prepare("SELECT idQuestionnaire,libelleQuestionnaire FROM questionnaire WHERE libelleQuestionnaire = 'Cinéma'");
+    $questionnaire = $cnx->prepare("SELECT idQuestionnaire,libelleQuestionnaire FROM questionnaire WHERE libelleQuestionnaire = '".$_GET["lblQuestionnaire"]."'");
     $questionnaire->execute();
     $test1 = $questionnaire->fetchAll(PDO::FETCH_ASSOC);
-    $questions = $cnx->prepare("SELECT question.idQuestion,libelleQuestion FROM question JOIN questionquestionnaire ON questionquestionnaire.idQuestion = question.idQuestion WHERE idQuestionnaire = ".$test1[0]["idQuestionnaire"]);
-    $questions->execute();
+    if(!empty($test1))
+    {
+        $questions = $cnx->prepare("SELECT question.idQuestion,libelleQuestion FROM question JOIN questionquestionnaire ON questionquestionnaire.idQuestion = question.idQuestion WHERE idQuestionnaire = ".$test1[0]["idQuestionnaire"]);
+        $questions->execute();
+    }
     ?>
     <form action="CreationQuestion.php" method="get">
     <!-- Retour à la liste de questionnaires -->
@@ -46,7 +49,7 @@
     <br>
     <br>
     <br>
-    <h1 class="flex tarte justify-center items-center font-semibold text-6xl underline hover:text-green-400 w-52" id="title"><?php echo $test1[0]["libelleQuestionnaire"]; ?></h1>
+    <h1 class="flex tarte justify-center items-center font-semibold text-6xl underline hover:text-green-400 w-52" id="title"><?php echo $_GET["lblQuestionnaire"]; ?></h1>
     <br>
     <br>
     <?php
@@ -59,7 +62,9 @@
     </script>
     <?php
     }
-    foreach($questions->fetchAll(PDO::FETCH_ASSOC) as $test2)
+    if(!empty($test1))
+    {
+        foreach($questions->fetchAll(PDO::FETCH_ASSOC) as $test2)
     {
         $reponses = $cnx->prepare("SELECT reponse.idReponse,valeur,bonne FROM reponse JOIN questionreponse ON reponse.idReponse = questionreponse.idReponse WHERE idQuestion = ".$test2["idQuestion"]);
         $reponses->execute();
@@ -87,6 +92,7 @@
         echo "</div>"."<br>";
         
     }
+    }
     if(isset($_GET["picPlus_y"]))
     {
         $nvq = $nvq + 1;
@@ -112,6 +118,8 @@
         echo "<div id='Pic'>";
             echo "<a href=''><input type='image' name='picPlus' src='../Images/Plus.png' class='w-16 h-16' alt=''></a>";
             echo "<a href=''><input type='image' name='picMinus' src='../Images/Minus.png' class='w-16 h-16' alt=''></a>";
+            echo "<input type='hidden' name='idQuestionnaire' value='".$_GET["idQuestionnaire"]."'>";
+            echo "<input type='hidden' name='lblQuestionnaire' value='".$_GET["lblQuestionnaire"]."'>";
         echo "</div>";
     ?>
     <br>
