@@ -9,7 +9,7 @@
         {
            array_push($_SESSION["reponses"],$listerep);
         }
-        header("Location:../../PartieLevi/vuePhp/DefinirReponse.php?question=".$_SESSION["question"]);
+        header("Location:../../PartieLevi/vuePhp/DefinirReponse.php?question=".$_SESSION["question"]."&idQ=".$_GET["NouvelleQuestion"]);
     }
 ?>
 
@@ -40,7 +40,7 @@
     $questions = $cnx->prepare("SELECT question.idQuestion,libelleQuestion FROM question JOIN questionquestionnaire ON questionquestionnaire.idQuestion = question.idQuestion WHERE idQuestionnaire = ".$test1[0]["idQuestionnaire"]);
     $questions->execute();
     ?>
-    <form action="" method="get">
+    <form action="CreationQuestion.php" method="get">
     <!-- Retour à la liste de questionnaires -->
     <input type="submit" value="Annuler création" name="buttonReturn" id="btnAnnuler" class="flex justify-center w-40 bg-red-400 h-14 rounded-xl">
     <br>
