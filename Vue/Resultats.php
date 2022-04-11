@@ -10,6 +10,7 @@
     <style><?php include '../js/bootstrap.min.js' ?></style>
     <style><?php include '../css/bootstrap.min.css' ?></style>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../styleCSS/Resultat.css">
 </head>
 <body>
     <?php

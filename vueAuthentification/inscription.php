@@ -40,7 +40,7 @@ if(isset($_POST['login']))
     <div class="text-center" id="container" >
         <h1>Inscription</h1>
         <form action="inscription.php" method="post">
-        <a href='acceuil.php'><input id='retour' type='button' value='Retour à la page dacceuil'></a>
+        <a href='acceuil.php'><input id='retour' type='button' value='Retour à la page dacceuil' class="hover: bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500  text-lime-100 rounded-r-lg shadow-inner w-60 h-7"></a>
         <p>Email :</p>
         <input class="shadow-md border-2 border-teal-400" type="email" name="email" id="">
         <p>Mot de passe :</p>
