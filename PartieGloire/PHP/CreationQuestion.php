@@ -9,7 +9,7 @@
         {
            array_push($_SESSION["reponses"],$listerep);
         }
-        header("Location:../../PartieLevi/vuePhp/DefinirReponse.php?question=".$_SESSION["question"]);
+        header("Location:../../PartieLevi/vuePhp/DefinirReponse.php?question=".$_SESSION["question"]."&idQai=".$_GET["idQuestionnaire"]."&idQ=".$_GET["NouvelleQuestion"]."&lblQuestionnaire=".$_GET["lblQuestionnaire"]."&NbRep=".$_GET["NbRep"]);
     }
 ?>
 
@@ -92,6 +92,8 @@
         $nvq = $nvq + 1;
         echo "<input type='text' name='question' placeholder='Insérer une nouvelle question' class='w-64 border border-black'><br>";
         echo "<input type='hidden' name='NouvelleQuestion' value='".($tot[0]["idq"] + 1)."'>";
+        echo "<input type='hidden' name='idQuestionnaire' value='".$_GET["idQuestionnaire"]."'>";
+        echo "<input type='hidden' name='lblQuestionnaire' value='".$_GET["lblQuestionnaire"]."'>";
         echo "<br>";
         echo "<div class='case bg-white border border-8 rounded-xl border-red-900 justify-around'>";
         // echo "<div id='divAnswers' class='flex-col justify-around'>";
