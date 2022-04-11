@@ -1,5 +1,11 @@
 <?php
     session_start();
+    if(isset($_GET["buttonReturn"]))
+    {
+        header("Location:../../PartieLevi/PageQuestionnaire/AccueilProfQCM.php?numProf=".$_GET["numProf"]);
+    }
+
+    
     if(isset($_GET['choixReponse']))
     {
         $_SESSION["question"] = $_GET["question"];
@@ -43,7 +49,7 @@
         $questions->execute();
     }
     ?>
-    <form action="CreationQuestion.php" method="get">
+    <form action="" method="get">
     <!-- Retour à la liste de questionnaires -->
     <input type="submit" value="Annuler création" name="buttonReturn" id="btnAnnuler" class="flex justify-center w-40 bg-red-400 h-14 rounded-xl">
     <br>
@@ -120,6 +126,7 @@
             echo "<a href=''><input type='image' name='picMinus' src='../Images/Minus.png' class='w-16 h-16' alt=''></a>";
             echo "<input type='hidden' name='idQuestionnaire' value='".$_GET["idQuestionnaire"]."'>";
             echo "<input type='hidden' name='lblQuestionnaire' value='".$_GET["lblQuestionnaire"]."'>";
+            echo "<input type='hidden' name='numProf' value='".$_GET["numProf"]."'>";
         echo "</div>";
     ?>
     <br>

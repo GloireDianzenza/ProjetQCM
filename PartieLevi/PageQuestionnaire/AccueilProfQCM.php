@@ -22,6 +22,7 @@ $maxId=$max[0][0]+1;
     <h2>Bienvenue dans la page d'administration des questionnaire</h2>
     <input hidden type="text" name="idQuestionnaire" value="<?php echo $maxId; ?>">
     <input type="text" name="lblQuestionnaire">
+    <input type="hidden" name="numProf" value="<?php echo $_GET["numProf"]; ?>">
     <input type="submit" value="Créer un questionnaire">
     <div id="questionnaire">
         <h3>questionnaire disponible</h3>
