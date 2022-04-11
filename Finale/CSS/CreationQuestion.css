@@ -1,0 +1,17 @@
+.case
+{
+    display: flex;
+    height: 300px;
+}
+
+#Pic
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+#divAnswers
+{
+    display: flex;
+    justify-content: space-around;
+}
