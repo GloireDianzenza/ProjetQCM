@@ -1,5 +1,5 @@
 <?php
-include "cnx.php";
+include "../cnx.php";
 $sql->prepare("");
 $sql->execute();
 

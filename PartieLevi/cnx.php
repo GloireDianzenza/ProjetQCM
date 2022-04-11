@@ -1,11 +1,11 @@
-﻿<?php
+<?php
 //connexion a la base de données
 // dsn = Data Source Name = driver MYSQL
 $dsn='mysql:dbname=bddqcm;host=localhost';
 //login
 $login='root';
 // Mot de passe
-$motDePasse='';
+$motDePasse='root';
 // Connexion au serveur MySQL
 try{
     $cnx = new PDO($dsn, $login, $motDePasse,
@@ -15,5 +15,4 @@ try{
 catch (PDOException $e){
 	die('Erreur : ' . $e->getMessage());
 }
-
-
+?>

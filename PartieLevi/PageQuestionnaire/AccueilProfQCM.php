@@ -1,5 +1,5 @@
 <?php
-include "cnx.php";
+include "../cnx.php";
 $sql1=$cnx->prepare("SELECT idQuestionnaire,libelleQuestionnaire FROM questionnaire");
 $sql1->execute();
 $sql2=$cnx->prepare("SELECT MAX(idQuestionnaire) FROM questionnaire");
