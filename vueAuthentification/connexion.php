@@ -36,7 +36,7 @@ if(isset($_POST['log']))
     }
     else if($row['statut']=="prof")
     {
-        header('Location:../../BackOffice/PartieLevi/PageQuestionnaire/AccueilProfQCM.php');
+        header('Location:../PartieLevi/PageQuestionnaire/AccueilProfQCM.php');
     }
     else
     {
