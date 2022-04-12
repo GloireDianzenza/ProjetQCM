@@ -1,6 +1,7 @@
 <?php
 include '../cnx.php';
 session_start();
+
     
     if(isset($_GET['choixReponse']))
     {
@@ -15,9 +16,22 @@ session_start();
     }
     if(!isset($_POST["picPlus_y"]))
     {
-        $_SESSION["idQuestionnaire"] = $_POST["idQuestionnaire"];
-        $_SESSION["lblQuestionnaire"] = $_POST["lblQuestionnaire"];
+        $_SESSION["idQuestionnaire"] = $_GET["idQuestionnaire"];
+        $_SESSION["lblQuestionnaire"] = $_GET["lblQuestionnaire"];
+        $_SESSION["tabQ"]=array();
+        $_SESSION["tabQ"]=$_GET["questChoisis"];
+
+        $creerQCM=$cnx->prepare("INSERT INTO questionnaire VALUES (".$_SESSION['idQuestionnaire'].",'".$_SESSION['lblQuestionnaire']."');");
+        $creerQCM->execute();
+        // C'est la requête qui permet de mettre les questions choisi dans le qcm
+        for($i=0;$i<count($_SESSION["tabQ"]);$i++)
+        {
+            $ajouterQ=$cnx->prepare("INSERT INTO `questionquestionnaire`(`idQuestionnaire`, `idQuestion`) VALUES ('".$_GET["idQuestionnaire"]."','".$_SESSION["tabQ"][$i]."')");
+            $ajouterQ->execute();
+        }
     }
+    
+    
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +67,7 @@ session_start();
     <br>
     <br>
     <br>
-    <h1 class="flex tarte justify-center items-center font-semibold text-6xl underline hover:text-green-400 w-52" id="title"><?php echo $_POST['lblQuestionnaire']; ?></h1>
+    <h1 class="flex tarte justify-center items-center font-semibold text-6xl underline hover:text-green-400 w-52" id="title"><?php echo $_GET['lblQuestionnaire']; ?></h1>
     <br>
     <br>
     <?php
@@ -96,8 +110,7 @@ session_start();
     }
     if(isset($_GET["picPlus_y"]))
     {
-        $creerQCM=$cnx->prepare("INSERT INTO  questionnaire VALUES (".$_SESSION['idQuestionnaire'].",'".$_SESSION['lblQuestionnaire']."')");
-        $creerQCM->execute();
+        
         $nvq = $nvq + 1;
         echo "<input type='text' name='question' placeholder='Insérer une nouvelle question' class='w-64 border border-black'><br>";
         echo "<input type='hidden' name='NouvelleQuestion' id='NouvelleQuestion' value='".($tot[0]["idq"] + 1)."'>";
