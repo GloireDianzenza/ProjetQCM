@@ -1,5 +1,5 @@
 <?php
-include '../cnx.php';
+include "../cnx.php";
 session_start();
 
     
@@ -18,17 +18,22 @@ session_start();
     {
         $_SESSION["idQuestionnaire"] = $_GET["idQuestionnaire"];
         $_SESSION["lblQuestionnaire"] = $_GET["lblQuestionnaire"];
-        $_SESSION["tabQ"]=array();
-        $_SESSION["tabQ"]=$_GET["questChoisis"];
-
         $creerQCM=$cnx->prepare("INSERT INTO questionnaire VALUES (".$_SESSION['idQuestionnaire'].",'".$_SESSION['lblQuestionnaire']."');");
         $creerQCM->execute();
-        // C'est la requête qui permet de mettre les questions choisi dans le qcm
-        for($i=0;$i<count($_SESSION["tabQ"]);$i++)
+        if(isset($_GET["questChoisis"]))
+        {
+            $_SESSION["tabQ"]=array();
+            $_SESSION["tabQ"]=$_GET["questChoisis"];
+
+            
+            // C'est la requête qui permet de mettre les questions choisi dans le qcm
+            for($i=0;$i<count($_SESSION["tabQ"]);$i++)
         {
             $ajouterQ=$cnx->prepare("INSERT INTO `questionquestionnaire`(`idQuestionnaire`, `idQuestion`) VALUES ('".$_GET["idQuestionnaire"]."','".$_SESSION["tabQ"][$i]."')");
             $ajouterQ->execute();
         }
+        }
+        
     }
     
     
@@ -114,7 +119,7 @@ session_start();
         $nvq = $nvq + 1;
         echo "<input type='text' name='question' placeholder='Insérer une nouvelle question' class='w-64 border border-black'><br>";
         echo "<input type='hidden' name='NouvelleQuestion' id='NouvelleQuestion' value='".($tot[0]["idq"] + 1)."'>";
-        echo "<input type='hidden' name='idQuestionnaire' value='".$_SESSION["idQuestionnaire"]."'>";
+        echo "<input id='idQnaire' type='hidden' name='idQuestionnaire' value='".$_SESSION["idQuestionnaire"]."'>";
         echo "<input type='hidden' name='lblQuestionnaire' value='".$_SESSION["lblQuestionnaire"]."'>";
         echo "<br>";
         echo "<div class='case bg-white border border-8 rounded-xl border-red-900 justify-around'>";
@@ -131,20 +136,23 @@ session_start();
         echo "<input onclick='ChoixRep()' type='button' name='choixReponse' value='Ajouter réponse' class='bg-yellow-300 h-12 rounded-md'>";
         echo "</div>";
     }
+    echo "<input type='text' id='lblQuestion' placeholder='Insérer une nouvelle question' class='w-64 border border-black'>";
     echo "<div id='divRep'></div>";
     echo "<br>";
     echo "<br>";
+    echo "<input onclick='ChoixRep()' type='button' value='Ajouter reponse'>";
         echo "<div id='Pic'>";
-            echo "<input onclick='AjouterReponse()' type='image' name='picPlus' src='../Images/Plus.png' class='w-16 h-16' alt=''>";
+            echo "<input type='image' name='picPlus' src='../Images/Plus.png' class='w-16 h-16' alt=''>";
             echo "<input onclick='EnleverReponse()' type='image' name='picMinus' src='../Images/Minus.png' class='w-16 h-16' alt=''>";
         echo "</div>";
     ?>
     <br>
     <br>
     <br>
+    
     <input type="submit" value="Fin de la création" name="buttonConfirmer">
 
-
+    <input id="idQnaire" type='hidden' name='idQuestionnaire' value="<?php echo $_SESSION["idQuestionnaire"]; ?>">
 </form>
 </body>
 </html>
