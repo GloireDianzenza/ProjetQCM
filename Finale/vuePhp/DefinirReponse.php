@@ -49,7 +49,7 @@ $sql->execute();
         </div>
         <input type="text" name="reponse" id="txtReponse">
         <input type="button" id="ajouterR" value="Ajouter une réponse">
-        <input type="button" onclick="Annuler()" id="EnleverRep" value="Enlever toute les réponses">
+        <!-- <input type="button" onclick="Annuler()" id="EnleverRep" value="Enlever toute les réponses"> -->
         
     </form>
     
