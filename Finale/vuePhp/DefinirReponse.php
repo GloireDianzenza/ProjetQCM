@@ -33,7 +33,6 @@ $sql->execute();
                 $('#ajouterR').click(SetReponse);
                 $('#deleteR').click(DeleteRep);
                 GetReponse();
-                //$('input[type=checkbox]').click(SetBonneReponse);
                 
             }
             
@@ -50,7 +49,7 @@ $sql->execute();
         </div>
         <input type="text" name="reponse" id="txtReponse">
         <input type="button" id="ajouterR" value="Ajouter une réponse">
-        <input type="button" value="Enlever toute les reponses" onclick="Annuler()">Annuler</a>
+        <input type="button" onclick="Annuler()" id="EnleverRep" value="Enlever toute les réponses">
         
     </form>
     

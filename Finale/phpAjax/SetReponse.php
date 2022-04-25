@@ -36,4 +36,3 @@ foreach($sql->fetchAll(PDO::FETCH_ASSOC) as $rep)
 
 ?>
 <input type="text" hidden="hidden" id="idQuestion" value="11">
-<input type="submit" value="Valider">

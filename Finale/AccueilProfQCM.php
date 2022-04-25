@@ -1,5 +1,5 @@
 <?php
-include "../cnx.php";
+include "cnx.php";
 $sql1=$cnx->prepare("SELECT idQuestionnaire,libelleQuestionnaire FROM questionnaire");
 $sql1->execute();
 $sql2=$cnx->prepare("SELECT MAX(idQuestionnaire) FROM questionnaire");
@@ -21,7 +21,7 @@ $sql3->execute();
     <script src="../PageQuestionnaire/js/JQuery 3.5.1.js"></script>
 </head>
 <body>
-    <form action="../PHP/CreationQuestion.php" method="get">
+    <form action="PHP/CreationQuestion.php" method="get">
     <h2>Bienvenue dans la page d'administration des questionnaire</h2>
     <input hidden type="text" name="idQuestionnaire" value="<?php echo $maxId; ?>">
     <input type="text" name="lblQuestionnaire">

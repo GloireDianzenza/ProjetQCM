@@ -140,7 +140,7 @@ session_start();
     echo "<div id='divRep'></div>";
     echo "<br>";
     echo "<br>";
-    echo "<input onclick='ChoixRep()' type='button' value='Ajouter reponse'>";
+    echo "<input onclick='ChoixRep()' id='ajRep' type='button' value='Ajouter reponse'>";
         echo "<div id='Pic'>";
             echo "<input type='image' name='picPlus' src='../Images/Plus.png' class='w-16 h-16' alt=''>";
             echo "<input onclick='EnleverReponse()' type='image' name='picMinus' src='../Images/Minus.png' class='w-16 h-16' alt=''>";
