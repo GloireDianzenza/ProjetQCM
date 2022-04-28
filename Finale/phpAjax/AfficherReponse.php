@@ -9,8 +9,7 @@ foreach($sql->fetchAll(PDO::FETCH_ASSOC) as $rep)
 {
     ?>
     <div class="checkRep">
-        <!-- Tu utilises ces input pour récupérer les ids des réponses qui doivent être bonnes -->
-        <input type="checkbox" onclick="SetBonneReponse()" name="bonne[]" value="<?php echo  $rep['idReponse']; ?>">
+        <input style="background-color:red" type="button" onclick="SetBonneReponse(<?php echo  $rep['idReponse']; ?>)" value="pas bonne">
         <div class="choixBonneReponse"><?php echo  $rep['valeur']; ?></div>
         <input type="button" onclick="DeleteRep(<?php echo  $rep['idReponse']; ?>)" class="DeleteR" id="<?php echo  $rep['idReponse']; ?>" value="Supprimer">
     </div>

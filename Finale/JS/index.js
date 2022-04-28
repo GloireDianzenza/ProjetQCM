@@ -49,14 +49,22 @@ function ChoixRep()
 
 function SetBonneReponse(Rep)
 {
-    var verifCheck=0;
     
-    if(!this.attr('checked'))
+    var verifCheck=0;
+    if($(this).attr('style')=="background-color:red")
     {
-        alert(coche);
+        console.log("vert");
         verifCheck=1;
+        $(this).attr('style')="background-color:green";
+        $(this).val()="bonne";
     }
-
+    else
+    {
+        console.log("rouge");
+        verifCheck=0;
+        $(this).attr('style')="background-color:red";
+        $(this).val()="pas bonne";
+    }
     $.ajax
     (
         {
@@ -65,7 +73,7 @@ function SetBonneReponse(Rep)
             data:"idQuestion="+$('#NouvelleQuestion').val()+"&idBonneRep="+Rep+"&bonne="+verifCheck,
             success:function(donnees)
             {
-                        
+                 console.log("bonne reponse");       
             },
             error:function () {
                 alert("Error function Ajax")

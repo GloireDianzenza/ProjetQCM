@@ -33,7 +33,8 @@ $sql->execute();
                 $('#ajouterR').click(SetReponse);
                 $('#deleteR').click(DeleteRep);
                 GetReponse();
-                
+                $('#ajouterR').click(GetReponse);
+                $('#deleteR').click(GetReponse);
             }
             
         )
@@ -48,7 +49,7 @@ $sql->execute();
         
         </div>
         <input type="text" name="reponse" id="txtReponse">
-        <input type="button" id="ajouterR" value="Ajouter une réponse">
+        <input class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 " type="button" id="ajouterR" value="Ajouter une réponse">
         <!-- <input type="button" onclick="Annuler()" id="EnleverRep" value="Enlever toute les réponses"> -->
         
     </form>
