@@ -18,7 +18,7 @@ $maxId=$max[0][0]+1;
     <script src="../PageQuestionnaire/js/JQuery 3.5.1.js"></script>
 </head>
 <body>
-    <form action="CreationQuestion.php" method="get">
+    <form action="../../PartieGloire/PHP/CreationQuestion.php" method="get">
     <h2>Bienvenue dans la page d'administration des questionnaire</h2>
     <input hidden type="text" name="idQuestionnaire" value="<?php echo $maxId; ?>">
     <input type="text" name="lblQuestionnaire">
