@@ -2,7 +2,26 @@
 include "../cnx.php";
 session_start();
 
-    
+if(isset($_POST["picMinus_y"]))
+{
+    $listeQuestions = $cnx->prepare("SELECT idQuestion FROM questionquestionnaire WHERE idQuestionnaire = ".$_SESSION["idQuestionnaire"]);
+    $listeQuestions->execute();
+    $questionList = $listeQuestions->fetchAll(PDO::FETCH_NUM);
+    $listeReponses = $cnx->prepare("SELECT idReponse FROM questionreponse WHERE idQuestion = ".$questionList[count($questionList)-1][0]);
+    $listeReponses->execute();
+    $answerList = $listeReponses->fetchAll(PDO::FETCH_NUM);
+    $effacerReponse = $cnx->prepare("DELETE FROM questionreponse WHERE idQuestion = ".$questionList[count($questionList)-1][0]);
+    $effacerReponse->execute();
+    $effacerQuestion = $cnx->prepare("DELETE FROM questionquestionnaire WHERE idQuestion = ".$questionList[count($questionList)-1][0]);
+    $effacerQuestion->execute();
+    foreach($answerList as $reponse)
+    {
+        $effacerReponse = $cnx->prepare("DELETE FROM reponse WHERE idReponse = ".$reponse[0]);
+        $effacerReponse->execute();
+    }
+    $effacerQuestion = $cnx->prepare("DELETE FROM question WHERE idQuestion = ".$questionList[count($questionList)-1][0]);
+    $effacerQuestion->execute();
+}
     if(isset($_GET['choixReponse']))
     {
         $_SESSION["question"] = $_GET["question"];
@@ -14,7 +33,7 @@ session_start();
         }
         header("Location:../../PartieLevi/vuePhp/DefinirReponse.php?question=".$_SESSION["question"]."&idQai=".$_GET["idQuestionnaire"]."&idQ=".$_GET["NouvelleQuestion"]."&lblQuestionnaire=".$_GET["lblQuestionnaire"]."&NbRep=".$_GET["NbRep"]);
     }
-    if(!isset($_POST["picPlus_y"]) && !isset($_POST["buttonReturn"]))
+    if(!isset($_POST["picMinus_y"]) && !isset($_POST["buttonReturn"]) && !isset($_POST["picPlus_y"]))
     {
         $_SESSION["idQuestionnaire"] = $_GET["idQuestionnaire"];
         $_SESSION["lblQuestionnaire"] = $_GET["lblQuestionnaire"];
@@ -137,6 +156,7 @@ session_start();
         echo "</div>"."<br>";
         
     }
+    
     if(isset($_GET["picPlus_y"]))
     {
         
@@ -166,7 +186,7 @@ session_start();
     echo "<input class='bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 ' onclick='ChoixRep()' id='ajRep' type='button' value='Ajouter reponse'>";
         echo "<div id='Pic'>";
             echo "<input type='image' name='picPlus' src='../Images/Plus.png' class='w-16 h-16' alt=''>";
-            echo "<input onclick='EnleverReponse()' type='image' name='picMinus' src='../Images/Minus.png' class='w-16 h-16' alt=''>";
+            echo "<input type='image' name='picMinus' src='../Images/Minus.png' class='w-16 h-16' alt=''>";
         echo "</div>";
     ?>
     <br>
