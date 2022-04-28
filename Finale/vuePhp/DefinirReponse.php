@@ -1,6 +1,19 @@
 <?php
+include "../cnx.php";
 session_start();
 $_SESSION['idQ']=$_POST['idQuestion'];
+$_SESSION['lbl']=$_POST['libelle'];
+$_SESSION['idQuest']=$_POST['idQuest'];
+
+$maxIdQ=$cnx->prepare("select max(idquestion) from question");
+$maxIdQ->execute();
+$idQ=$maxIdQ->fetchAll(PDO::FETCH_NUM);
+$idQ=$idQ[0][0]+1;
+$sql=$cnx->prepare("INSERT INTO question VALUES (".$idQ.",'".$_SESSION['lbl']."',1,0,0)");
+$sql->execute();
+
+$sql=$cnx->prepare("INSERT INTO questionquestionnaire VALUES (".$_SESSION['idQuest'].",".$idQ.")");
+$sql->execute();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +33,6 @@ $_SESSION['idQ']=$_POST['idQuestion'];
                 $('#ajouterR').click(SetReponse);
                 $('#deleteR').click(DeleteRep);
                 GetReponse();
-                //$('input[type=checkbox]').click(SetBonneReponse);
                 
             }
             
@@ -29,7 +41,7 @@ $_SESSION['idQ']=$_POST['idQuestion'];
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <input id="idQ" value="<?php echo $_POST['idQuestion'] ?>" hidden type="text">
+    <input id="idQ" value="<?php echo $idQ; ?>" hidden type="text">
     <form action="" method="get">
         <div>Créer des réponses</div>
         <div id="containerReponse">
@@ -37,7 +49,7 @@ $_SESSION['idQ']=$_POST['idQuestion'];
         </div>
         <input type="text" name="reponse" id="txtReponse">
         <input type="button" id="ajouterR" value="Ajouter une réponse">
-        <a onclick="Annuler()" href="exemple.php">Annuler</a>
+        <!-- <input type="button" onclick="Annuler()" id="EnleverRep" value="Enlever toute les réponses"> -->
         
     </form>
     

@@ -1,12 +1,13 @@
 <?php
-include "../cnx.php";
+include "cnx.php";
 $sql1=$cnx->prepare("SELECT idQuestionnaire,libelleQuestionnaire FROM questionnaire");
 $sql1->execute();
 $sql2=$cnx->prepare("SELECT MAX(idQuestionnaire) FROM questionnaire");
 $sql2->execute();
 $max=$sql2->fetchAll(PDO::FETCH_NUM);
 $maxId=$max[0][0]+1;
-
+$sql3=$cnx->prepare("SELECT * FROM question");
+$sql3->execute();
 
 ?>
 <!DOCTYPE html>
@@ -20,11 +21,27 @@ $maxId=$max[0][0]+1;
     <script src="../PageQuestionnaire/js/JQuery 3.5.1.js"></script>
 </head>
 <body>
-    <form action="../PHP/CreationQuestion.php" method="get">
+    <form action="PHP/CreationQuestion.php" method="get">
     <h2>Bienvenue dans la page d'administration des questionnaire</h2>
     <input hidden type="text" name="idQuestionnaire" value="<?php echo $maxId; ?>">
     <input type="text" name="lblQuestionnaire">
     <input type="submit" value="Créer un questionnaire">
+    <div id="question">
+    <p>Selectionnez des questions à inclure dans votre QCM :</p>
+    <?php
+    foreach($sql3->fetchAll(PDO::FETCH_ASSOC) as $row)
+    {
+    ?>
+    <div>
+        <input type="checkbox" name="questChoisis[]" value="<?php echo $row['idQuestion']; ?>">
+        <label for="questChoisis"><?php echo $row['libelleQuestion'];  ?></label>
+        
+    </div>
+    
+    </div>
+    <?php
+    }
+    ?>
     <div id="questionnaire">
         <h3>questionnaire disponible</h3>
     <?php
