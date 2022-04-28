@@ -14,7 +14,7 @@ session_start();
         }
         header("Location:../../PartieLevi/vuePhp/DefinirReponse.php?question=".$_SESSION["question"]."&idQai=".$_GET["idQuestionnaire"]."&idQ=".$_GET["NouvelleQuestion"]."&lblQuestionnaire=".$_GET["lblQuestionnaire"]."&NbRep=".$_GET["NbRep"]);
     }
-    if(!isset($_POST["picPlus_y"]))
+    if(!isset($_POST["picPlus_y"]) && !isset($_POST["buttonReturn"]))
     {
         $_SESSION["idQuestionnaire"] = $_GET["idQuestionnaire"];
         $_SESSION["lblQuestionnaire"] = $_GET["lblQuestionnaire"];
@@ -34,6 +34,12 @@ session_start();
         }
         }
         
+    }
+    if(isset($_POST["buttonReturn"]))
+    {
+        $effacerQuestionnaire = $cnx->prepare("DELETE FROM questionnaire WHERE idQuestionnaire = ".$_SESSION["idQuestionnaire"]);
+        $effacerQuestionnaire->execute();
+        header("Location:../AccueilProfQCM.php");
     }
     
     
