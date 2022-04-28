@@ -37,6 +37,24 @@ session_start();
     }
     if(isset($_POST["buttonReturn"]))
     {
+        $listeQuestions = $cnx->prepare("SELECT idQuestion FROM questionquestionnaire WHERE idQuestionnaire = ".$_SESSION["idQuestionnaire"]);
+        $listeQuestions->execute();
+        $effacerQuestion = $cnx->prepare("DELETE FROM questionquestionnaire WHERE idQuestionnaire = ".$_SESSION["idQuestionnaire"]);
+        $effacerQuestion->execute();
+        foreach($listeQuestions->fetchAll(PDO::FETCH_NUM) as $question)
+        {
+            $listeReponses = $cnx->prepare("SELECT idReponse FROM questionreponse WHERE idQuestion = ".$question[0]);
+            $listeReponses->execute();
+            $effacerReponse = $cnx->prepare("DELETE FROM questionreponse WHERE idQuestion = ".$question[0]);
+            $effacerReponse->execute();
+            foreach($listeReponses->fetchAll(PDO::FETCH_NUM) as $reponse)
+            {
+                $effacerReponse = $cnx->prepare("DELETE FROM reponse WHERE idReponse = ".$reponse[0]);
+                $effacerReponse->execute();
+            }
+            $effacerQuestion = $cnx->prepare("DELETE FROM question WHERE idQuestion = ".$question[0]);
+            $effacerQuestion->execute();
+        }
         $effacerQuestionnaire = $cnx->prepare("DELETE FROM questionnaire WHERE idQuestionnaire = ".$_SESSION["idQuestionnaire"]);
         $effacerQuestionnaire->execute();
         header("Location:../AccueilProfQCM.php");
