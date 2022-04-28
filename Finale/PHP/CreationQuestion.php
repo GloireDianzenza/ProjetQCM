@@ -139,14 +139,13 @@ session_start();
         echo "<div class='flex justify-center items-center'>";
         echo "<input type='radio' name='NbRep' value='Chk'><p class='text-3xl bg-green-200 rounded-sm'>Checkbox</p>";
         echo "</div>";
-        echo "<input onclick='ChoixRep()' type='button' name='choixReponse' value='Ajouter réponse' class='bg-yellow-300 h-12 rounded-md'>";
         echo "</div>";
     }
     echo "<input type='text' id='lblQuestion' placeholder='Insérer une nouvelle question' class='w-64 border border-black'>";
     echo "<div id='divRep'></div>";
     echo "<br>";
     echo "<br>";
-    echo "<input onclick='ChoixRep()' id='ajRep' type='button' value='Ajouter reponse'>";
+    echo "<input class='bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 ' onclick='ChoixRep()' id='ajRep' type='button' value='Ajouter reponse'>";
         echo "<div id='Pic'>";
             echo "<input type='image' name='picPlus' src='../Images/Plus.png' class='w-16 h-16' alt=''>";
             echo "<input onclick='EnleverReponse()' type='image' name='picMinus' src='../Images/Minus.png' class='w-16 h-16' alt=''>";
