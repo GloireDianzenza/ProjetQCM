@@ -1,5 +1,10 @@
 <?php
     session_start();
+    if(!isset($_GET["picPlus_y"]))
+    {
+        $_SESSION["idQuestionnaire"] = $_GET["idQuestionnaire"];
+        $_SESSION["lblQuestionnaire"] = $_GET["lblQuestionnaire"];
+    }
     if(isset($_GET['choixReponse']))
     {
         $_SESSION["question"] = $_GET["question"];
@@ -30,11 +35,16 @@
     $nvq = 0;
     $r = 0;
     $ans = 1;
-    include '../cnx.php';
+    include '../../PartieLevi/cnx.php';
     $total = $cnx->prepare("SELECT COUNT(idQuestion) as idq FROM question");
     $total->execute();
     $tot = $total->fetchAll(PDO::FETCH_ASSOC);
-    $questionnaire = $cnx->prepare("SELECT idQuestionnaire,libelleQuestionnaire FROM questionnaire WHERE libelleQuestionnaire = 'Cinéma'");
+    if(!isset($_GET["picPlus_x"]))
+    {
+        $creationQuestion = $cnx->prepare("INSERT INTO questionnaire VALUES (".$_GET["idQuestionnaire"].",'".$_GET["lblQuestionnaire"]."')");
+        $creationQuestion->execute();
+    }
+    $questionnaire = $cnx->prepare("SELECT idQuestionnaire,libelleQuestionnaire FROM questionnaire WHERE libelleQuestionnaire = '".$_SESSION["lblQuestionnaire"]."'");
     $questionnaire->execute();
     $test1 = $questionnaire->fetchAll(PDO::FETCH_ASSOC);
     $questions = $cnx->prepare("SELECT question.idQuestion,libelleQuestion FROM question JOIN questionquestionnaire ON questionquestionnaire.idQuestion = question.idQuestion WHERE idQuestionnaire = ".$test1[0]["idQuestionnaire"]);
@@ -92,8 +102,8 @@
         $nvq = $nvq + 1;
         echo "<input type='text' name='question' placeholder='Insérer une nouvelle question' class='w-64 border border-black'><br>";
         echo "<input type='hidden' name='NouvelleQuestion' value='".($tot[0]["idq"] + 1)."'>";
-        echo "<input type='hidden' name='idQuestionnaire' value='".$_GET["idQuestionnaire"]."'>";
-        echo "<input type='hidden' name='lblQuestionnaire' value='".$_GET["lblQuestionnaire"]."'>";
+        echo "<input type='hidden' name='idQuestionnaire' value='".$_SESSION["idQuestionnaire"]."'>";
+        echo "<input type='hidden' name='lblQuestionnaire' value='".$_SESSION["lblQuestionnaire"]."'>";
         echo "<br>";
         echo "<div class='case bg-white border border-8 rounded-xl border-red-900 justify-around'>";
         // echo "<div id='divAnswers' class='flex-col justify-around'>";
