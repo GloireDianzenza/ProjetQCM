@@ -22,9 +22,9 @@ $sql->execute();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Choix réponses</title>
-    <script src="../phpAjax/js/mesFonctions.js"></script>
-    <script src="../phpAjax/js/JQuery 3.5.1.js"></script>
+    <script src="../JS/JQuery 3.5.1.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../JS/index.js"></script>
     <script>
         $(
             function()
@@ -35,6 +35,7 @@ $sql->execute();
                 GetReponse();
                 $('#ajouterR').click(GetReponse);
                 $('#deleteR').click(GetReponse);
+                ModifBtnAjouterReponse();
             }
             
         )

@@ -2,26 +2,7 @@
 include "../cnx.php";
 session_start();
 
-if(isset($_POST["picMinus_y"]))
-{
-    $listeQuestions = $cnx->prepare("SELECT idQuestion FROM questionquestionnaire WHERE idQuestionnaire = ".$_SESSION["idQuestionnaire"]);
-    $listeQuestions->execute();
-    $questionList = $listeQuestions->fetchAll(PDO::FETCH_NUM);
-    $listeReponses = $cnx->prepare("SELECT idReponse FROM questionreponse WHERE idQuestion = ".$questionList[count($questionList)-1][0]);
-    $listeReponses->execute();
-    $answerList = $listeReponses->fetchAll(PDO::FETCH_NUM);
-    $effacerReponse = $cnx->prepare("DELETE FROM questionreponse WHERE idQuestion = ".$questionList[count($questionList)-1][0]);
-    $effacerReponse->execute();
-    $effacerQuestion = $cnx->prepare("DELETE FROM questionquestionnaire WHERE idQuestion = ".$questionList[count($questionList)-1][0]);
-    $effacerQuestion->execute();
-    foreach($answerList as $reponse)
-    {
-        $effacerReponse = $cnx->prepare("DELETE FROM reponse WHERE idReponse = ".$reponse[0]);
-        $effacerReponse->execute();
-    }
-    $effacerQuestion = $cnx->prepare("DELETE FROM question WHERE idQuestion = ".$questionList[count($questionList)-1][0]);
-    $effacerQuestion->execute();
-}
+    
     if(isset($_GET['choixReponse']))
     {
         $_SESSION["question"] = $_GET["question"];
@@ -33,7 +14,7 @@ if(isset($_POST["picMinus_y"]))
         }
         header("Location:../../PartieLevi/vuePhp/DefinirReponse.php?question=".$_SESSION["question"]."&idQai=".$_GET["idQuestionnaire"]."&idQ=".$_GET["NouvelleQuestion"]."&lblQuestionnaire=".$_GET["lblQuestionnaire"]."&NbRep=".$_GET["NbRep"]);
     }
-    if(!isset($_POST["picMinus_y"]) && !isset($_POST["buttonReturn"]) && !isset($_POST["picPlus_y"]))
+    if(!isset($_POST["picPlus_y"]) && !isset($_POST["buttonReturn"]))
     {
         $_SESSION["idQuestionnaire"] = $_GET["idQuestionnaire"];
         $_SESSION["lblQuestionnaire"] = $_GET["lblQuestionnaire"];
@@ -78,7 +59,10 @@ if(isset($_POST["picMinus_y"]))
         $effacerQuestionnaire->execute();
         header("Location:../AccueilProfQCM.php");
     }
-    
+    if()
+    {
+        
+    }
     
 ?>
 
@@ -109,7 +93,7 @@ if(isset($_POST["picMinus_y"]))
     $questions = $cnx->prepare("SELECT question.idQuestion,libelleQuestion FROM question JOIN questionquestionnaire ON questionquestionnaire.idQuestion = question.idQuestion WHERE idQuestionnaire = ".$_SESSION["idQuestionnaire"]);
     $questions->execute();
     ?>
-    <form action="" method="post">
+    <form action="../AccueilProfQCM.php" method="post">
     <!-- Retour à la liste de questionnaires -->
     <input type="submit" value="Annuler création" name="buttonReturn" id="btnAnnuler" class="flex justify-center w-40 bg-red-400 h-14 rounded-xl">
     <br>
@@ -156,39 +140,17 @@ if(isset($_POST["picMinus_y"]))
         echo "</div>"."<br>";
         
     }
-    
-    if(isset($_GET["picPlus_y"]))
-    {
-        
-        $nvq = $nvq + 1;
-        echo "<input type='text' name='question' placeholder='Insérer une nouvelle question' class='w-64 border border-black'><br>";
-        echo "<input type='hidden' name='NouvelleQuestion' id='NouvelleQuestion' value='".($tot[0]["idq"] + 1)."'>";
-        echo "<input id='idQnaire' type='hidden' name='idQuestionnaire' value='".$_SESSION["idQuestionnaire"]."'>";
-        echo "<input type='hidden' name='lblQuestionnaire' value='".$_SESSION["lblQuestionnaire"]."'>";
-        echo "<br>";
-        echo "<div class='case bg-white border border-8 rounded-xl border-red-900 justify-around'>";
-        echo "<div id='divAnswers' class='flex-col justify-around'>";
-        echo "</div>";
-        // echo "<input type='button' value='Ajouter réponse' onclick='AjouterReponse()' class='bg-blue-100'>";
-        // echo "<input type='button' value='Enlever réponse' id='' onclick='EnleverReponse()' class='bg-red-100'>";
-        echo "<div class='flex justify-center items-center'>";
-        echo "<input type='radio' name='NbRep' value='Rad'><p class='text-3xl bg-green-200 rounded-sm'>Radio</p>";
-        echo "</div>";
-        echo "<div class='flex justify-center items-center'>";
-        echo "<input type='radio' name='NbRep' value='Chk'><p class='text-3xl bg-green-200 rounded-sm'>Checkbox</p>";
-        echo "</div>";
-        echo "</div>";
-    }
-    echo "<input type='text' id='lblQuestion' placeholder='Insérer une nouvelle question' class='w-64 border border-black'>";
-    echo "<div id='divRep'></div>";
-    echo "<br>";
-    echo "<br>";
-    echo "<input class='bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 ' onclick='ChoixRep()' id='ajRep' type='button' value='Ajouter reponse'>";
-        echo "<div id='Pic'>";
-            echo "<input type='image' name='picPlus' src='../Images/Plus.png' class='w-16 h-16' alt=''>";
-            echo "<input type='image' name='picMinus' src='../Images/Minus.png' class='w-16 h-16' alt=''>";
-        echo "</div>";
     ?>
+    <input type='text' onkeyup='ModifBtnAjouterReponse()' id='lblQuestion' placeholder='Insérer une nouvelle question' class='w-64 border border-black'>";
+    <div id='divRep'></div>
+    <br>
+    <br>
+    <input class='bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 ' onclick='ChoixRep()' id='ajRep' type='button' value='Ajouter des réponses'>
+        <div id='Pic'>
+            <input type='image' name='picPlus' src='../Images/Plus.png' class='w-16 h-16' alt=''>
+            <input onclick='EnleverReponse()' type='image' name='picMinus' src='../Images/Minus.png' class='w-16 h-16' alt=''>
+        </div>
+    
     <br>
     <br>
     <br>
