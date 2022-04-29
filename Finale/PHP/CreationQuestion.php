@@ -59,10 +59,6 @@ session_start();
         $effacerQuestionnaire->execute();
         header("Location:../AccueilProfQCM.php");
     }
-    if()
-    {
-        
-    }
     
 ?>
 
