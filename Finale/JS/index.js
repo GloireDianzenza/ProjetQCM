@@ -87,7 +87,7 @@ function ModifBtnAjouterReponse()
 {
     if($("#lblQuestion").val()=="")
     {
-        $('#ajRep').attr("hidden");
+        $('#ajRep').attr("hidden","hidden");
     }
     else
     {

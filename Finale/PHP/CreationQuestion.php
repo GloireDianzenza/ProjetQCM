@@ -170,6 +170,7 @@ session_start();
             <input type='image' name='picMinus' src='../Images/Minus.png' class='w-16 h-16' alt=''>
         </div>
     
+        <script> ModifBtnAjouterReponse();</script>
     <br>
     <br>
     <br>
