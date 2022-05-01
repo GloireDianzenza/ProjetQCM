@@ -160,14 +160,14 @@ session_start();
         
     }
     ?>
-    <input type='text' onkeyup='ModifBtnAjouterReponse()' id='lblQuestion' placeholder='Insérer une nouvelle question' class='w-64 border border-black'>";
+    <input type='text' onkeyup='ModifBtnAjouterReponse()' id='lblQuestion' placeholder='Insérer une nouvelle question' class='w-64 border border-black'>
     <div id='divRep'></div>
     <br>
     <br>
     <input class='bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 ' onclick='ChoixRep()' id='ajRep' type='button' value='Ajouter des réponses'>
         <div id='Pic'>
             <input type='image' name='picPlus' src='../Images/Plus.png' class='w-16 h-16' alt=''>
-            <input onclick='EnleverReponse()' type='image' name='picMinus' src='../Images/Minus.png' class='w-16 h-16' alt=''>
+            <input type='image' name='picMinus' src='../Images/Minus.png' class='w-16 h-16' alt=''>
         </div>
     
     <br>
