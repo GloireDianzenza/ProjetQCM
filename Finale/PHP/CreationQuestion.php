@@ -14,7 +14,7 @@ session_start();
         }
         header("Location:../../PartieLevi/vuePhp/DefinirReponse.php?question=".$_SESSION["question"]."&idQai=".$_GET["idQuestionnaire"]."&idQ=".$_GET["NouvelleQuestion"]."&lblQuestionnaire=".$_GET["lblQuestionnaire"]."&NbRep=".$_GET["NbRep"]);
     }
-    if(!isset($_POST["picPlus_y"]) && !isset($_POST["buttonReturn"]))
+    if(!isset($_POST["picPlus_y"]) && !isset($_POST["buttonReturn"]) && !isset($_POST["picMinus_y"]))
     {
         $_SESSION["idQuestionnaire"] = $_GET["idQuestionnaire"];
         $_SESSION["lblQuestionnaire"] = $_GET["lblQuestionnaire"];
@@ -59,6 +59,29 @@ session_start();
         $effacerQuestionnaire->execute();
         header("Location:../AccueilProfQCM.php");
     }
+    if(isset($_POST["picMinus_y"]))
+    {
+        $listeQuestions = $cnx->prepare("SELECT idQuestion FROM questionquestionnaire WHERE idQuestionnaire = ".$_SESSION["idQuestionnaire"]);
+        $listeQuestions->execute();
+        $listeQuestions = $listeQuestions->fetchAll(PDO::FETCH_NUM);
+        if(count($listeQuestions) > 0)
+        {
+            $listeReponses = $cnx->prepare("SELECT idReponse FROM questionreponse WHERE idQuestion = ".$listeQuestions[count($listeQuestions)-1][0]);
+            $listeReponses->execute();
+            $listeReponses = $listeReponses->fetchAll(PDO::FETCH_NUM);
+            foreach($listeReponses as $reponse)
+            {
+                $effacerReponse = $cnx->prepare("DELETE FROM questionreponse WHERE idReponse = ".$reponse[0]);
+                $effacerReponse->execute();
+                $effacerReponse = $cnx->prepare("DELETE FROM reponse WHERE idReponse = ".$reponse[0]);
+                $effacerReponse->execute();
+            }
+            $effacerQuestion = $cnx->prepare("DELETE FROM questionquestionnaire WHERE idQuestion = ".$listeQuestions[count($listeQuestions)-1][0]);
+            $effacerQuestion->execute();
+            $effacerQuestion = $cnx->prepare("DELETE FROM question WHERE idQuestion = ".$listeQuestions[count($listeQuestions)-1][0]);
+            $effacerQuestion->execute();
+        }
+    }
     
 ?>
 
@@ -89,7 +112,7 @@ session_start();
     $questions = $cnx->prepare("SELECT question.idQuestion,libelleQuestion FROM question JOIN questionquestionnaire ON questionquestionnaire.idQuestion = question.idQuestion WHERE idQuestionnaire = ".$_SESSION["idQuestionnaire"]);
     $questions->execute();
     ?>
-    <form action="../AccueilProfQCM.php" method="post">
+    <form action="" method="post">
     <!-- Retour à la liste de questionnaires -->
     <input type="submit" value="Annuler création" name="buttonReturn" id="btnAnnuler" class="flex justify-center w-40 bg-red-400 h-14 rounded-xl">
     <br>
