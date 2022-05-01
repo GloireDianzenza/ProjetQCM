@@ -26,8 +26,10 @@ $sql3->execute();
     <h2 class="text-2xl text-center bg-sky-500">Bienvenue dans la page d'administration des Questionnaires</h2>
     <br>
     <input hidden type="text" name="idQuestionnaire" value="<?php echo $maxId; ?>">
+    <label for="lblQuestionnaire">Libellée de votre questionnaire</label>
     <input type="text" name="lblQuestionnaire">
-    <input type="submit" value="Créer un questionnaire">
+    <br>
+    <input class="bg-yellow-500 hover:bg-yellow-600" type="submit" value="Créer un questionnaire">
     <div  id="question">
     <br>
     <p class="uppercase">Selectionnez des questions à inclure dans votre QCM :</p>
