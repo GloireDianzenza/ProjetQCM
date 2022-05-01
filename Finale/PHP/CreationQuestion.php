@@ -97,7 +97,7 @@ session_start();
     <script src="../JS/JQuery 3.5.1.js"></script>
     <script src="../JS/index.js"></script>
 </head>
-<body>
+<body class="bg-sky-200 ml-3 mb-3 mt-3 mr-3">
     <?php
     $nvq = 0;
     $r = 0;
@@ -114,9 +114,7 @@ session_start();
     ?>
     <form action="" method="post">
     <!-- Retour à la liste de questionnaires -->
-    <input type="submit" value="Annuler création" name="buttonReturn" id="btnAnnuler" class="flex justify-center w-40 bg-red-400 h-14 rounded-xl">
-    <br>
-    <br>
+    <input type="submit" value="Annuler création" name="buttonReturn" id="btnAnnuler" class="flex justify-center w-40 bg-red-400 h-14 ">
     <br>
     <h1 class="flex tarte justify-center items-center font-semibold text-6xl underline hover:text-green-400 w-52" id="title"><?php echo $_GET['lblQuestionnaire']; ?></h1>
     <br>
@@ -160,7 +158,7 @@ session_start();
         
     }
     ?>
-    <input type='text' onkeyup='ModifBtnAjouterReponse()' id='lblQuestion' placeholder='Insérer une nouvelle question' class='w-64 border border-black'>";
+    <input type='text' onkeyup='ModifBtnAjouterReponse()' id='lblQuestion' placeholder='Insérer une nouvelle question' class='w-64 border border-black text-center'>
     <div id='divRep'></div>
     <br>
     <br>
@@ -174,7 +172,7 @@ session_start();
     <br>
     <br>
     
-    <input type="submit" value="Fin de la création" name="buttonConfirmer">
+    <input type="submit" value="Fin de la création" name="buttonConfirmer" class="flex justify-center w-40 bg-green-400 h-14 ">
 
     <input id="idQnaire" type='hidden' name='idQuestionnaire' value="<?php echo $_SESSION["idQuestionnaire"]; ?>">
 </form>
