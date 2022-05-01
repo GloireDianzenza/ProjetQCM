@@ -35,7 +35,7 @@ $sql->execute();
                 GetReponse();
                 $('#ajouterR').click(GetReponse);
                 $('#deleteR').click(GetReponse);
-                ModifBtnAjouterReponse();
+                
             }
             
         )

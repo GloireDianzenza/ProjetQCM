@@ -7,6 +7,8 @@ function ChoixRep()
     }
     else
     {
+        $("#lblQuestion").attr("readonly","readonly");
+        $('#ajRep').attr("hidden","hidden");
         $.ajax
         (
             {
@@ -51,18 +53,18 @@ function SetBonneReponse(Rep)
 {
     
     var verifCheck=0;
-    if($(this).val().toLowerCase=="pas bonne")
+    if($("#"+Rep+"").val()=="pas bonne")
     {
         console.log("vert");
         verifCheck=1;
-        $(this).attr('style','background-color:red');
+        $(this).attr("style","background-color:red");
         $(this).val("bonne");
     }
     else
     {
         console.log("rouge");
         verifCheck=0;
-        $(this).attr('style','background-color:red');
+        $(this).attr("style","background-color:red");
         $(this).val("pas bonne");
     }
     $.ajax
@@ -87,7 +89,7 @@ function ModifBtnAjouterReponse()
 {
     if($("#lblQuestion").val()=="")
     {
-        $('#ajRep').attr("hidden");
+        $('#ajRep').attr("hidden","hidden");
     }
     else
     {
