@@ -9,7 +9,7 @@ foreach($sql->fetchAll(PDO::FETCH_ASSOC) as $rep)
 {
     ?>
     <div class="checkRep">
-        <input style="background-color:red" type="button" onclick="SetBonneReponse(<?php echo  $rep['idReponse']; ?>)" value="pas bonne">
+        <input id="<?php echo  $rep['idReponse']; ?>" style="background-color:red" type="button" onclick="SetBonneReponse(<?php echo  $rep['idReponse']; ?>)" value="pas bonne">
         <div class="choixBonneReponse"><?php echo  $rep['valeur']; ?></div>
         <input type="button" onclick="DeleteRep(<?php echo  $rep['idReponse']; ?>)" class="DeleteR" id="<?php echo  $rep['idReponse']; ?>" value="Supprimer">
     </div>
