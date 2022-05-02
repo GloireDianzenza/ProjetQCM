@@ -14,8 +14,7 @@ session_start();
         }
         header("Location:../../PartieLevi/vuePhp/DefinirReponse.php?question=".$_SESSION["question"]."&idQai=".$_GET["idQuestionnaire"]."&idQ=".$_GET["NouvelleQuestion"]."&lblQuestionnaire=".$_GET["lblQuestionnaire"]."&NbRep=".$_GET["NbRep"]);
     }
-    
-    if(!isset($_POST["picPlus_y"]) && !isset($_POST["buttonReturn"]) && !isset($_POST["picMinus_y"]))
+    if(!isset($_POST["picPlus_y"]) && !isset($_POST["buttonReturn"]) && !isset($_POST["picMinus_y"]) && !isset($_POST["buttonConfirmer"]))
     {
         $_SESSION["idQuestionnaire"] = $_GET["idQuestionnaire"];
         $_SESSION["lblQuestionnaire"] = $_GET["lblQuestionnaire"];
@@ -64,7 +63,7 @@ session_start();
         $listeQuestions = $cnx->prepare("SELECT idQuestion FROM questionquestionnaire WHERE idQuestionnaire = ".$_SESSION["idQuestionnaire"]);
         $listeQuestions->execute();
         $listeQuestions = $listeQuestions->fetchAll(PDO::FETCH_NUM);
-        if(count($listeQuestions) > 0)
+        if(!empty($listeQuestions))
         {
             $listeReponses = $cnx->prepare("SELECT idReponse FROM questionreponse WHERE idQuestion = ".$listeQuestions[count($listeQuestions)-1][0]);
             $listeReponses->execute();
@@ -81,6 +80,10 @@ session_start();
             $effacerQuestion = $cnx->prepare("DELETE FROM question WHERE idQuestion = ".$listeQuestions[count($listeQuestions)-1][0]);
             $effacerQuestion->execute();
         }
+    }
+    if(isset($_POST["buttonConfirmer"]))
+    {
+        header("Location:../AccueilProfQCM.php");
     }
     
 ?>
@@ -139,13 +142,14 @@ session_start();
         newSum = "";
         document.getElementById("idSummary").setAttribute('value',newSum);
     </script>
+    
     <?php
     }
     foreach($questions->fetchAll(PDO::FETCH_ASSOC) as $test2)
     {
         $reponses = $cnx->prepare("SELECT reponse.idReponse,valeur,bonne FROM reponse JOIN questionreponse ON reponse.idReponse = questionreponse.idReponse WHERE idQuestion = ".$test2["idQuestion"]);
         $reponses->execute();
-        echo "<p class='bg-blue-400'>".$test2["libelleQuestion"]."</p>"."<br>";
+        echo "<p class='bg-blue-400 text-2xl  text-center'>".$test2["libelleQuestion"]."</p>"."<br>";
         echo "<div class='case bg-white border border-8 rounded-xl border-blue-200'>";
         foreach($reponses->fetchAll(PDO::FETCH_ASSOC) as $test3)
         {
@@ -158,12 +162,13 @@ session_start();
         }
         if($r == 1)
         {
-            echo "<input class='text-right' type='radio' disabled>&thinsp;Une seule réponse";
+            echo "<input class='bg-black-500' type='radio' disabled>&thinsp;Une seule réponse";
             $r = 0;
         }
         else
         {
-            echo "<input class='text-right' type='checkbox' disabled>&thinsp;Plusieurs réponses";
+            
+            echo "<input class='' type='checkbox' disabled>&thinsp; Plusieurs réponses";
             $r = 0;
         }
         echo "</div>"."<br>";
