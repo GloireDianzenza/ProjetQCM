@@ -116,7 +116,7 @@ session_start();
     <!-- Retour à la liste de questionnaires -->
     <input type="submit" value="Annuler création" name="buttonReturn" id="btnAnnuler" class="flex justify-center w-40 bg-red-400 h-14 ">
     <br>
-    <h1 class="flex tarte justify-center items-center font-semibold text-6xl hover:text-green-400 text-center" id="title"><?php echo $_GET['lblQuestionnaire']; ?></h1>
+    <h1 class=" justify-center items-center text-5xl uppercase text-center" id="title"><?php echo $_GET['lblQuestionnaire']; ?></h1>
     <br>
     <br>
     <?php
@@ -158,6 +158,8 @@ session_start();
         
     }
     ?>
+    <p class="text-2xl">Insérer votre question ici :</p>
+    <br>
     <input type='text' onkeyup='ModifBtnAjouterReponse()' id='lblQuestion' placeholder='Insérer une nouvelle question' class='w-64 border border-black text-center'>
     <div id='divRep'></div>
     <br>
@@ -165,7 +167,7 @@ session_start();
     <input class='bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 ' onclick='ChoixRep()' id='ajRep' type='button' value='Ajouter des réponses'>
         <div id='Pic'>
             <input type='image' name='picPlus' src='../Images/Plus.png' class='w-16 h-16' alt=''>
-            <input onclick='EnleverReponse()' type='image' name='picMinus' src='../Images/Minus.png' class='w-16 h-16' alt=''>
+            <input onclick='EnleverReponse()' type='image' name='picMinus' src='../Images/Minus.png' class='w-16 h-16 ' alt=''>
         </div>
     <script>ModifBtnAjouterReponse();</script>
     <br>
