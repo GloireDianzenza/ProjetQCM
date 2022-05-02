@@ -151,7 +151,7 @@ session_start();
         }
         else
         {
-            echo "<input class='text-right' type='checkbox' disabled>&thinsp;Plusieurs réponses";
+            echo "<input class=' text-right ' type='checkbox' disabled>&thinsp; Plusieurs réponses";
             $r = 0;
         }
         echo "</div>"."<br>";
