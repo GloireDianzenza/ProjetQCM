@@ -116,7 +116,7 @@ session_start();
     <!-- Retour à la liste de questionnaires -->
     <input type="submit" value="Annuler création" name="buttonReturn" id="btnAnnuler" class="flex justify-center w-40 bg-red-400 h-14 ">
     <br>
-    <h1 class="flex tarte justify-center items-center font-semibold text-6xl underline hover:text-green-400 w-52" id="title"><?php echo $_GET['lblQuestionnaire']; ?></h1>
+    <h1 class="flex tarte justify-center items-center font-semibold text-6xl hover:text-green-400 text-center" id="title"><?php echo $_GET['lblQuestionnaire']; ?></h1>
     <br>
     <br>
     <?php
