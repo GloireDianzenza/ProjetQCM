@@ -110,8 +110,8 @@ function SetReponse() {
             data:"reponse="+$('#txtReponse').val()+"&idQuestion="+idQ,
             success:function(donnees)
             {
-                $('#containerReponse').empty();
-                $('#containerReponse').append(donnees);
+                // $('#containerReponse').empty();
+                // $('#containerReponse').append(donnees);
                 $('#txtReponse').val("");
             },
             error:function () {
@@ -119,6 +119,7 @@ function SetReponse() {
             }
         }
     );
+    GetReponse();
 
 }
 function GetReponse() {
@@ -159,6 +160,7 @@ function DeleteRep(idReponse) {
             }
         }
     );
+    GetReponse();
 }
 
 function Annuler() {

@@ -23,4 +23,4 @@ else{
 $sql=$cnx->prepare("SELECT reponse.idReponse,valeur,idQuestion,ordre,bonne FROM reponse JOIN questionreponse ON reponse.idReponse=questionreponse.idReponse WHERE idQuestion=".$_POST['idQuestion']);
 $sql->execute();
 ?>
-<input type="text" hidden="hidden" id="idQuestion" value="11">
+

@@ -33,8 +33,6 @@ $sql->execute();
                 $('#ajouterR').click(SetReponse);
                 $('#deleteR').click(DeleteRep);
                 GetReponse();
-                $('#ajouterR').click(GetReponse);
-                $('#deleteR').click(GetReponse);
                 
             }
             
