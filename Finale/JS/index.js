@@ -53,17 +53,17 @@ function SetBonneReponse(Rep)
 {
     
     var verifCheck=0;
-    if($("#"+Rep).val()=="pas bonne")
+    if($("#verif"+Rep).val()=="pas bonne")
     {
         verifCheck=1;
-        $(this).attr("style","background-color:red");
-        $(this).val("bonne");
+        $("#verif"+Rep).attr("style","background-color:red");
+        $("#verif"+Rep).val("bonne");
     }
     else
     {
         verifCheck=0;
-        $(this).attr("style","background-color:red");
-        $(this).val("pas bonne");
+        $("#verif"+Rep).attr("style","background-color:red");
+        $("#verif"+Rep).val("pas bonne");
     }
     $.ajax
     (
