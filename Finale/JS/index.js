@@ -183,13 +183,8 @@ function Annuler() {
 
 function VerifQcm()
 {
-    if($("#lblQuestionnaire").val()=="")
+    if($(this).val()=="")
     {
-        $(this).removeAttr("type");
-        alert('Veuillez donnez un libellé à votre questionnaire');
-    }
-    else{
-        
-        $(this).attr("type","submit");
+        $('#btnCreer').removeAttr("hidden");
     }
 }
