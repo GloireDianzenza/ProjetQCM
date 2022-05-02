@@ -55,14 +55,12 @@ function SetBonneReponse(Rep)
     var verifCheck=0;
     if($("#"+Rep).val()=="pas bonne")
     {
-        console.log("vert");
         verifCheck=1;
         $(this).attr("style","background-color:red");
         $(this).val("bonne");
     }
     else
     {
-        console.log("rouge");
         verifCheck=0;
         $(this).attr("style","background-color:red");
         $(this).val("pas bonne");
@@ -75,7 +73,7 @@ function SetBonneReponse(Rep)
             data:"idQuestion="+$('#NouvelleQuestion').val()+"&idBonneRep="+Rep+"&bonne="+verifCheck,
             success:function(donnees)
             {
-                 console.log("bonne reponse");       
+                      
             },
             error:function () {
                 alert("Error function Ajax")
@@ -183,7 +181,8 @@ function Annuler() {
 
 function VerifQcm()
 {
-    if($(this).val()=="")
+    $('#btnCreer').hide()
+    if(!$("#lblQuestionnaire").val()=="")
     {
         $('#btnCreer').show();
     }

@@ -20,6 +20,9 @@ $sql3->execute();
     <script src="./JS/JQuery 3.5.1.js"></script>
     <script src="./JS/index.js"></script>
     <script src="http://cdn.tailwindcss.com"></script>
+    <script>
+        VerifQcm();
+    </script>
 </head>
 <body class="bg-sky-300 font-mono text-start ml-3 mt-3 mr-3 mb-3">
     <form action="PHP/CreationQuestion.php" method="get">
