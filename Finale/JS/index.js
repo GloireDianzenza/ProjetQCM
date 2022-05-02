@@ -49,39 +49,39 @@ function ChoixRep()
 //     );
 // }
 
-function SetBonneReponse(Rep)
-{
+// function SetBonneReponse(Rep)
+// {
     
-    var verifCheck=0;
-    if($("#verif"+Rep).val()=="pas bonne")
-    {
-        verifCheck=1;
-        $("#verif"+Rep).attr("style","background-color:red");
-        $("#verif"+Rep).val("bonne");
-    }
-    else
-    {
-        verifCheck=0;
-        $("#verif"+Rep).attr("style","background-color:red");
-        $("#verif"+Rep).val("pas bonne");
-    }
-    $.ajax
-    (
-        {
-            method:"post",
-            url:"../phpAjax/SetBonneRep.php",
-            data:"idQuestion="+$('#NouvelleQuestion').val()+"&idBonneRep="+Rep+"&bonne="+verifCheck,
-            success:function(donnees)
-            {
-                      
-            },
-            error:function () {
-                alert("Error function Ajax")
-            }
-        }
-    ); 
+//     var verifCheck=0;
+//     if($("#verif"+Rep).val()=="pas bonne")
+//     {
+//         verifCheck=1;
+//         $("#verif"+Rep).css("background-color","green");
+//         $("#verif"+Rep).val("bonne");
+//     }
+//     else
+//     {
+//         verifCheck=0;
+//         $("#verif"+Rep).css("background-color","red");
+//         $("#verif"+Rep).val("pas bonne");
+//     }
+//     $.ajax
+//     (
+//         {
+//             method:"post",
+//             url:"../phpAjax/SetBonneRep.php",
+//             data:"idQuestion="+$('#NouvelleQuestion').val()+"&idBonneRep="+Rep+"&bonne="+verifCheck,
+//             success:function(donnees)
+//             {
+                
+//             },
+//             error:function () {
+//                 alert("Error function Ajax")
+//             }
+//         }
+//     ); 
     
-}
+// }
 
 function ModifBtnAjouterReponse()
 {

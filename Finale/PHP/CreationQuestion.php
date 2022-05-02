@@ -14,6 +14,7 @@ session_start();
         }
         header("Location:../../PartieLevi/vuePhp/DefinirReponse.php?question=".$_SESSION["question"]."&idQai=".$_GET["idQuestionnaire"]."&idQ=".$_GET["NouvelleQuestion"]."&lblQuestionnaire=".$_GET["lblQuestionnaire"]."&NbRep=".$_GET["NbRep"]);
     }
+    
     if(!isset($_POST["picPlus_y"]) && !isset($_POST["buttonReturn"]) && !isset($_POST["picMinus_y"]))
     {
         $_SESSION["idQuestionnaire"] = $_GET["idQuestionnaire"];
@@ -33,7 +34,6 @@ session_start();
             $ajouterQ->execute();
         }
         }
-        
     }
     if(isset($_POST["buttonReturn"]))
     {
@@ -120,6 +120,18 @@ session_start();
     <br>
     <br>
     <?php
+
+    print_r($_POST['bonne']);
+    if(isset($_POST['bonne']))
+    {
+
+        for($i=0;$i<count($_POST['bonne']);$i++)
+        {
+            $sql=$cnx->prepare("UPDATE `questionreponse` SET bonne= 1 WHERE questionreponse.idQuestion = ".$_POST['idQuestion']." AND questionreponse.idReponse = ".$_POST['bonne'][$i].";");
+            $sql->execute();
+        }
+        
+    }
     if(isset($_GET["txtResume"]))
     {
     ?>

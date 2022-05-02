@@ -32,7 +32,7 @@ $sql3->execute();
     <label for="lblQuestionnaire">Saisissez un Nom de Questionnaires pour pouvoir le crée:</label>
     <input onkeyup="VerifQcm()" type="text" id="lblQuestionnaire" name="lblQuestionnaire">
     <br>
-    <input id="btnCreer" class="bg-green-500 hover:bg-green-600" type="submit" value="Créer un questionnaire">
+    <input hidden id="btnCreer" class="bg-green-500 hover:bg-green-600" type="submit" value="Créer un questionnaire">
     <br>
     <br>
     <p class="text-2xl text-center bg-sky-400 uppercase">Selectionnez des questions Existantes à inclure dans votre QCM :</p><br>
