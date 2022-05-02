@@ -14,7 +14,7 @@ session_start();
         }
         header("Location:../../PartieLevi/vuePhp/DefinirReponse.php?question=".$_SESSION["question"]."&idQai=".$_GET["idQuestionnaire"]."&idQ=".$_GET["NouvelleQuestion"]."&lblQuestionnaire=".$_GET["lblQuestionnaire"]."&NbRep=".$_GET["NbRep"]);
     }
-    if(!isset($_POST["picPlus_y"]) && !isset($_POST["buttonReturn"]) && !isset($_POST["picMinus_y"]))
+    if(!isset($_POST["picPlus_y"]) && !isset($_POST["buttonReturn"]) && !isset($_POST["picMinus_y"]) && !isset($_POST["buttonConfirmer"]))
     {
         $_SESSION["idQuestionnaire"] = $_GET["idQuestionnaire"];
         $_SESSION["lblQuestionnaire"] = $_GET["lblQuestionnaire"];
@@ -64,7 +64,7 @@ session_start();
         $listeQuestions = $cnx->prepare("SELECT idQuestion FROM questionquestionnaire WHERE idQuestionnaire = ".$_SESSION["idQuestionnaire"]);
         $listeQuestions->execute();
         $listeQuestions = $listeQuestions->fetchAll(PDO::FETCH_NUM);
-        if(count($listeQuestions) > 0)
+        if(!empty($listeQuestions))
         {
             $listeReponses = $cnx->prepare("SELECT idReponse FROM questionreponse WHERE idQuestion = ".$listeQuestions[count($listeQuestions)-1][0]);
             $listeReponses->execute();
@@ -81,6 +81,10 @@ session_start();
             $effacerQuestion = $cnx->prepare("DELETE FROM question WHERE idQuestion = ".$listeQuestions[count($listeQuestions)-1][0]);
             $effacerQuestion->execute();
         }
+    }
+    if(isset($_POST["buttonConfirmer"]))
+    {
+        header("Location:../AccueilProfQCM.php");
     }
     
 ?>
