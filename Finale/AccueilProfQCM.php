@@ -17,39 +17,56 @@ $sql3->execute();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QCMprof</title>
-    <script src="../PageQuestionnaire/js/mesFonctions.js"></script>
-    <script src="../PageQuestionnaire/js/JQuery 3.5.1.js"></script>
+    <script src="./JS/JQuery 3.5.1.js"></script>
+    <script src="./JS/index.js"></script>
+    <script src="http://cdn.tailwindcss.com"></script>
+    <script>
+        VerifQcm();
+    </script>
 </head>
-<body>
+<body class="bg-sky-300 font-mono text-start ml-3 mt-3 mr-3 mb-3">
     <form action="PHP/CreationQuestion.php" method="get">
-    <h2>Bienvenue dans la page d'administration des questionnaire</h2>
+    <h2 class="text-2xl text-center bg-sky-500">Bienvenue dans la page d'administration des Questionnaires</h2>
+    <br>
     <input hidden type="text" name="idQuestionnaire" value="<?php echo $maxId; ?>">
-    <input type="text" name="lblQuestionnaire">
-    <input type="submit" value="Créer un questionnaire">
-    <div id="question">
-    <p>Selectionnez des questions à inclure dans votre QCM :</p>
+    <label for="lblQuestionnaire">Saisissez un Nom de Questionnaires pour pouvoir le crée:</label>
+    <input onkeyup="VerifQcm()" type="text" id="lblQuestionnaire" name="lblQuestionnaire">
+    <br>
+    <input id="btnCreer" class="bg-green-500 hover:bg-green-600" type="submit" value="Créer un questionnaire">
+    <br>
+    <br>
+    <p class="text-2xl text-center bg-sky-400 uppercase">Selectionnez des questions Existantes à inclure dans votre QCM :</p><br>
+    <div class="grid grid-cols-4 gap-2"  id="question">
     <?php
+    
     foreach($sql3->fetchAll(PDO::FETCH_ASSOC) as $row)
     {
     ?>
     <div>
-        <input type="checkbox" name="questChoisis[]" value="<?php echo $row['idQuestion']; ?>">
+        <input  type="checkbox" name="questChoisis[]" value="<?php echo $row['idQuestion']; ?>">
         <label for="questChoisis"><?php echo $row['libelleQuestion'];  ?></label>
         
     </div>
     
-    </div>
+    
+    
     <?php
     }
     ?>
+    </div><br>
     <div id="questionnaire">
-        <h3>questionnaire disponible</h3>
+        <h3 class="text-2xl text-center bg-sky-400">Questionnaire disponible:</h3>
+        <br>
+    <div class="grid grid-cols-4 gap-4">
     <?php
     foreach($sql1->fetchAll(PDO::FETCH_ASSOC) as $row){
     ?>
-    <div><?php echo $row['idQuestionnaire'];  ?> </div>
-    <div><?php echo $row['libelleQuestionnaire'];  ?> </div>
+    <div class="flex">
+        <div class="text-center bg-sky-100 h-12 w-12 mr-5 pt-3"><?php echo $row['idQuestionnaire'];  ?>  </div>
+        <label class="text-center bg-cyan-200  pt-3 pl-2 pr-2"> <?php echo $row['libelleQuestionnaire'];  ?> </label>
+    </div>
     <?php } ?>
+    </div>    
     </div>
     </form>
 </body>

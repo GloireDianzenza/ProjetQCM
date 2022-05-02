@@ -7,6 +7,8 @@ function ChoixRep()
     }
     else
     {
+        $("#lblQuestion").attr("readonly","readonly");
+        $('#ajRep').attr("hidden","hidden");
         $.ajax
         (
             {
@@ -51,19 +53,17 @@ function SetBonneReponse(Rep)
 {
     
     var verifCheck=0;
-    if($(this).val().toLowerCase=="pas bonne")
+    if($("#verif"+Rep).val()=="pas bonne")
     {
-        console.log("vert");
         verifCheck=1;
-        $(this).attr('style','background-color:red');
-        $(this).val("bonne");
+        $("#verif"+Rep).attr("style","background-color:red");
+        $("#verif"+Rep).val("bonne");
     }
     else
     {
-        console.log("rouge");
         verifCheck=0;
-        $(this).attr('style','background-color:red');
-        $(this).val("pas bonne");
+        $("#verif"+Rep).attr("style","background-color:red");
+        $("#verif"+Rep).val("pas bonne");
     }
     $.ajax
     (
@@ -73,7 +73,7 @@ function SetBonneReponse(Rep)
             data:"idQuestion="+$('#NouvelleQuestion').val()+"&idBonneRep="+Rep+"&bonne="+verifCheck,
             success:function(donnees)
             {
-                 console.log("bonne reponse");       
+                      
             },
             error:function () {
                 alert("Error function Ajax")
@@ -87,7 +87,7 @@ function ModifBtnAjouterReponse()
 {
     if($("#lblQuestion").val()=="")
     {
-        $('#ajRep').attr("hidden");
+        $('#ajRep').attr("hidden","hidden");
     }
     else
     {
@@ -177,4 +177,13 @@ function Annuler() {
             }
         }
     );
+}
+
+function VerifQcm()
+{
+    $('#btnCreer').hide()
+    if(!$("#lblQuestionnaire").val()=="")
+    {
+        $('#btnCreer').show();
+    }
 }

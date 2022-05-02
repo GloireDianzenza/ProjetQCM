@@ -101,7 +101,7 @@ session_start();
     <script src="../JS/JQuery 3.5.1.js"></script>
     <script src="../JS/index.js"></script>
 </head>
-<body>
+<body class="bg-sky-200 ml-3 mb-3 mt-3 mr-3">
     <?php
     $nvq = 0;
     $r = 0;
@@ -118,11 +118,9 @@ session_start();
     ?>
     <form action="" method="post">
     <!-- Retour à la liste de questionnaires -->
-    <input type="submit" value="Annuler création" name="buttonReturn" id="btnAnnuler" class="flex justify-center w-40 bg-red-400 h-14 rounded-xl">
+    <input type="submit" value="Annuler création" name="buttonReturn" id="btnAnnuler" class="flex justify-center w-40 bg-red-400 h-14 ">
     <br>
-    <br>
-    <br>
-    <h1 class="flex tarte justify-center items-center font-semibold text-6xl underline hover:text-green-400 w-52" id="title"><?php echo $_GET['lblQuestionnaire']; ?></h1>
+    <h1 class=" justify-center items-center text-5xl uppercase text-center" id="title"><?php echo $_GET['lblQuestionnaire']; ?></h1>
     <br>
     <br>
     <?php
@@ -133,13 +131,14 @@ session_start();
         newSum = "";
         document.getElementById("idSummary").setAttribute('value',newSum);
     </script>
+    
     <?php
     }
     foreach($questions->fetchAll(PDO::FETCH_ASSOC) as $test2)
     {
         $reponses = $cnx->prepare("SELECT reponse.idReponse,valeur,bonne FROM reponse JOIN questionreponse ON reponse.idReponse = questionreponse.idReponse WHERE idQuestion = ".$test2["idQuestion"]);
         $reponses->execute();
-        echo "<p class='bg-blue-400'>".$test2["libelleQuestion"]."</p>"."<br>";
+        echo "<p class='bg-blue-400 text-2xl  text-center'>".$test2["libelleQuestion"]."</p>"."<br>";
         echo "<div class='case bg-white border border-8 rounded-xl border-blue-200'>";
         foreach($reponses->fetchAll(PDO::FETCH_ASSOC) as $test3)
         {
@@ -152,33 +151,36 @@ session_start();
         }
         if($r == 1)
         {
-            echo "<input class='text-right' type='radio' disabled>&thinsp;Une seule réponse";
+            echo "<input class='bg-black-500' type='radio' disabled>&thinsp;Une seule réponse";
             $r = 0;
         }
         else
         {
-            echo "<input class='text-right' type='checkbox' disabled>&thinsp;Plusieurs réponses";
+            
+            echo "<input class='' type='checkbox' disabled>&thinsp; Plusieurs réponses";
             $r = 0;
         }
         echo "</div>"."<br>";
         
     }
     ?>
-    <input type='text' onkeyup='ModifBtnAjouterReponse()' id='lblQuestion' placeholder='Insérer une nouvelle question' class='w-64 border border-black'>";
+    <p class="text-2xl">Insérer votre question ici :</p>
+    <br>
+    <input type='text' onkeyup='ModifBtnAjouterReponse()' id='lblQuestion' placeholder='Insérer une nouvelle question' class='w-64 border border-black text-center'>
     <div id='divRep'></div>
     <br>
     <br>
     <input class='bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 ' onclick='ChoixRep()' id='ajRep' type='button' value='Ajouter des réponses'>
         <div id='Pic'>
             <input type='image' name='picPlus' src='../Images/Plus.png' class='w-16 h-16' alt=''>
-            <input onclick='EnleverReponse()' type='image' name='picMinus' src='../Images/Minus.png' class='w-16 h-16' alt=''>
+            <input onclick='EnleverReponse()' type='image' name='picMinus' src='../Images/Minus.png' class='w-16 h-16 p-13' alt=''>
         </div>
-    
+    <script>ModifBtnAjouterReponse();</script>
     <br>
     <br>
     <br>
     
-    <input type="submit" value="Fin de la création" name="buttonConfirmer">
+    <a href="../AccueilProfQCM.php"><input type="button" value="Fin de la création" name="buttonConfirmer" class="flex justify-center w-40 bg-green-400 h-14 "></a>
 
     <input id="idQnaire" type='hidden' name='idQuestionnaire' value="<?php echo $_SESSION["idQuestionnaire"]; ?>">
 </form>
