@@ -127,13 +127,14 @@ session_start();
         newSum = "";
         document.getElementById("idSummary").setAttribute('value',newSum);
     </script>
+    
     <?php
     }
     foreach($questions->fetchAll(PDO::FETCH_ASSOC) as $test2)
     {
         $reponses = $cnx->prepare("SELECT reponse.idReponse,valeur,bonne FROM reponse JOIN questionreponse ON reponse.idReponse = questionreponse.idReponse WHERE idQuestion = ".$test2["idQuestion"]);
         $reponses->execute();
-        echo "<p class='bg-blue-400'>".$test2["libelleQuestion"]."</p>"."<br>";
+        echo "<p class='bg-blue-400 text-2xl  text-center'>".$test2["libelleQuestion"]."</p>"."<br>";
         echo "<div class='case bg-white border border-8 rounded-xl border-blue-200'>";
         foreach($reponses->fetchAll(PDO::FETCH_ASSOC) as $test3)
         {
@@ -146,12 +147,13 @@ session_start();
         }
         if($r == 1)
         {
-            echo "<input class='text-right' type='radio' disabled>&thinsp;Une seule réponse";
+            echo "<input class='bg-black-500' type='radio' disabled>&thinsp;Une seule réponse";
             $r = 0;
         }
         else
         {
-            echo "<input class=' text-right ' type='checkbox' disabled>&thinsp; Plusieurs réponses";
+            
+            echo "<input class='' type='checkbox' disabled>&thinsp; Plusieurs réponses";
             $r = 0;
         }
         echo "</div>"."<br>";
