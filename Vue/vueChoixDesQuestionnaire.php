@@ -39,21 +39,9 @@
             
             <div id="profil" class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-blue-500 hover:to-yellow-500  text-center h-auto w-auto rounded"><?php echo $nomEtudiant[0][1];  echo "  ".$nomEtudiant[0][2]; echo "<br>"; echo $nomEtudiant[0][0];   ?><!-- <img id="imgProfil" src="../photo/photoProfile.png" alt=""> --></div>
         </header>
-        <div id="tblResult-Recherche" class="grid grid-cols-3 gap-4 place-items-stretch h-56 mt-2.5 ">
-            <?php
-            foreach($sql->fetchAll(PDO::FETCH_ASSOC)as $row){?>
-                <?php echo "<a href='../Vue/vueQCM.php?numQCM=".$row['idQuestionnaire']."&nomQCM=".$row['libelleQuestionnaire']."'>"; ?>
-                <div class="hover:font-bold bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 rounded">
-                    <div><?php echo $row['libelleQuestionnaire']; ?></div>
-                    <div><?php echo $row['idQuestionnaire'];?></div>
-                </div>
-                </a> 
-                
-            <?php } ?>
-        </div>
-        
-        
-        <table class="border rounded-xl border-collapse border-slate-500" id="tblListeQCM">
+        <br>
+        <div id="tblResult-Recherche" class="">
+        <table class="relative border rounded-xl border-collapse border-slate-500" id="tblListeQCM">
             
             <thead>
                 <tr class="border border-slate-300 rounded-xl">
@@ -92,6 +80,25 @@
 <?php } ?>
 
         </table>
+<br>
+
+                <div class="grid grid-cols-3 gap-4 place-items-stretch h-56 mt-2.5 ">
+            <?php
+            foreach($sql->fetchAll(PDO::FETCH_ASSOC)as $row){?>
+                <?php echo "<a href='../Vue/vueQCM.php?numQCM=".$row['idQuestionnaire']."&nomQCM=".$row['libelleQuestionnaire']."'>"; ?>
+                <div class="hover:font-bold bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 rounded">
+                    <div><?php echo $row['libelleQuestionnaire']; ?></div>
+                    <div><?php echo $row['idQuestionnaire'];?></div>
+                </div>
+                </a> 
+                
+            <?php } ?></div>
+
+            
+        </div>
+        
+        
+        
                 
         
                 
