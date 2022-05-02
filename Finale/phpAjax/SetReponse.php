@@ -2,9 +2,9 @@
 include "../cnx.php";
 $sql=$cnx->prepare("select max(idReponse) from reponse");
 $sql->execute();
-$maxId=$sql->fetchAll(PDO::FETCH_ASSOC);
+$maxId=$sql->fetchAll(PDO::FETCH_NUM);
 
-$majR=$cnx->prepare("INSERT INTO reponse VALUES (".$maxId[0]['idReponse'].",'".$_POST['reponse']."','')");
+$majR=$cnx->prepare("INSERT INTO reponse VALUES (".($maxId[0][0]+1).",'".$_POST['reponse']."','')");
 $majR->execute();
 if($_POST['reponse']!="")
 {

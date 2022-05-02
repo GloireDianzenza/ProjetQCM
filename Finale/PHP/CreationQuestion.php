@@ -167,7 +167,7 @@ session_start();
     <input class='bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 ' onclick='ChoixRep()' id='ajRep' type='button' value='Ajouter des réponses'>
         <div id='Pic'>
             <input type='image' name='picPlus' src='../Images/Plus.png' class='w-16 h-16' alt=''>
-            <input onclick='EnleverReponse()' type='image' name='picMinus' src='../Images/Minus.png' class='w-16 h-16 ' alt=''>
+            <input onclick='EnleverReponse()' type='image' name='picMinus' src='../Images/Minus.png' class='w-16 h-16 p-13' alt=''>
         </div>
     <script>ModifBtnAjouterReponse();</script>
     <br>
