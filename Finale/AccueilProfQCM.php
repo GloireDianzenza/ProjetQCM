@@ -53,13 +53,14 @@ $sql3->execute();
     </div><br>
     <div id="questionnaire">
         <h3 class="text-2xl text-center bg-sky-400">Questionnaire disponible:</h3>
+        <br>
     <div class="grid grid-cols-4 gap-4">
     <?php
     foreach($sql1->fetchAll(PDO::FETCH_ASSOC) as $row){
     ?>
     <div class="flex">
-        <div class="text-center bg-emerald-400 rounded-full h-12 w-12 mr-5 pt-3"><?php echo $row['idQuestionnaire'];  ?>  </div>
-        <label class="text-center bg-rose-300 rounded pt-3 pl-2 pr-2"> <?php echo $row['libelleQuestionnaire'];  ?> </label>
+        <div class="text-center bg-sky-100 h-12 w-12 mr-5 pt-3"><?php echo $row['idQuestionnaire'];  ?>  </div>
+        <label class="text-center bg-cyan-200  pt-3 pl-2 pr-2"> <?php echo $row['libelleQuestionnaire'];  ?> </label>
     </div>
     <?php } ?>
     </div>    
