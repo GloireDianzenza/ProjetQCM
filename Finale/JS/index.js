@@ -53,7 +53,7 @@ function SetBonneReponse(Rep)
 {
     
     var verifCheck=0;
-    if($("#"+Rep+"").val()=="pas bonne")
+    if($("#"+Rep).val()=="pas bonne")
     {
         console.log("vert");
         verifCheck=1;
@@ -179,4 +179,17 @@ function Annuler() {
             }
         }
     );
+}
+
+function VerifQcm()
+{
+    if($("#lblQuestionnaire").val()=="")
+    {
+        $(this).removeAttr("type");
+        alert('Veuillez donnez un libellé à votre questionnaire');
+    }
+    else{
+        
+        $(this).attr("type","submit");
+    }
 }
