@@ -172,7 +172,7 @@ session_start();
     <br>
     <br>
     
-    <input type="submit" value="Fin de la création" name="buttonConfirmer" class="flex justify-center w-40 bg-green-400 h-14 ">
+    <a href="../AccueilProfQCM.php"><input type="button" value="Fin de la création" name="buttonConfirmer" class="flex justify-center w-40 bg-green-400 h-14 "></a>
 
     <input id="idQnaire" type='hidden' name='idQuestionnaire' value="<?php echo $_SESSION["idQuestionnaire"]; ?>">
 </form>

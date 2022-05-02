@@ -185,6 +185,6 @@ function VerifQcm()
 {
     if($(this).val()=="")
     {
-        $('#btnCreer').removeAttr("hidden");
+        $('#btnCreer').show();
     }
 }
