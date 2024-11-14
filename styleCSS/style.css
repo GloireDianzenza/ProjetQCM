@@ -1,0 +1,61 @@
+#container{
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+header{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+}
+#aide{
+    position: relative;
+    margin-left:70%;
+}
+#txtRechercheQCM{
+    height: 20px;
+    margin-top: 25px;
+}
+#imgProfil{
+    width: 40px;
+    position: absolute;
+}
+#lblRecherche
+{
+    position: absolute;
+}
+#tblListeQCM{
+    position: absolute;
+    margin-top: 11%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 90%;
+}
+.tdListeQCM{
+    width:150px;
+}
+input[type="button"]{
+    margin-top: 50%;
+    margin-left: 25%;
+}
+
+#barreEvoQCM{
+    width: 40px;
+    height: 10px;
+    background-color: aquamarine;
+}
+#refresh
+{
+    height: 20px;
+    margin: 0;
+}
+#divResultRecherche{
+    position: relative;
+    margin-top: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 90%;
+}
